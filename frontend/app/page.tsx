@@ -18,8 +18,16 @@ export default function HomePage() {
       <main className="w-full min-h-screen">
         {/* Hero Section */}
         <section id="hero" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-16">
-        {/* Animated background gradient */}
-        <div className="absolute inset-0 bg-linear-to-br from-background-primary via-texas-blue/20 to-background-primary" />
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img 
+            src="/images/hero-bg.jpg" 
+            alt="Advanced robotics technology"
+            className="w-full h-full object-cover opacity-20"
+          />
+        </div>
+        {/* Animated background gradient overlay */}
+        <div className="absolute inset-0 bg-linear-to-br from-background-primary/80 via-texas-blue/20 to-background-primary/80" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]" />
         
         {/* Content */}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
+import StructuredData from "@/components/StructuredData";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -86,6 +87,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <StructuredData />
+      </head>
       <body className={`${spaceGrotesk.variable} ${inter.variable} antialiased w-full overflow-x-hidden`}>
         <div className="w-full min-h-screen">
           {children}
