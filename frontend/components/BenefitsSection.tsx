@@ -25,8 +25,12 @@ export default function BenefitsSection() {
 
   if (loading) {
     return (
-      <section className="w-full py-24 px-6 bg-background-primary">
-        <div className="max-w-7xl mx-auto">
+      <section className="w-full py-24 px-6 bg-background-secondary relative overflow-hidden">
+        {/* Background accent image */}
+        <div className="absolute inset-0 opacity-5">
+          <img src="/images/ai-robotics.jpg" alt="" className="w-full h-full object-cover" />
+        </div>
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center text-text-secondary">Loading benefits...</div>
         </div>
       </section>
@@ -34,8 +38,13 @@ export default function BenefitsSection() {
   }
 
   return (
-    <section className="w-full py-24 px-6 bg-background-secondary">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full py-24 px-6 bg-background-secondary relative overflow-hidden">
+      {/* Background accent image */}
+      <div className="absolute inset-0 opacity-5">
+        <img src="/images/ai-robotics.jpg" alt="" className="w-full h-full object-cover" />
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold mb-4 text-text-primary">
             What You Get

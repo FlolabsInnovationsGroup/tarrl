@@ -3,6 +3,10 @@
 export default function CallToActionSection() {
   return (
     <section className="w-full py-32 px-6 bg-linear-to-br from-background-primary via-texas-blue/20 to-background-primary relative overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0 opacity-10">
+        <img src="/images/space-earth.jpg" alt="" className="w-full h-full object-cover" />
+      </div>
       {/* Decorative elements */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.15),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(139,92,246,0.15),transparent_50%)]" />

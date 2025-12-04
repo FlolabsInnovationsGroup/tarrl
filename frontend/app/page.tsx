@@ -21,14 +21,14 @@ export default function HomePage() {
         {/* Background image */}
         <div className="absolute inset-0">
           <img 
-            src="/images/hero-bg.jpg" 
-            alt="Advanced robotics technology"
-            className="w-full h-full object-cover opacity-20"
+            src="/images/robotics-lab.jpg" 
+            alt="Advanced robotics research laboratory"
+            className="w-full h-full object-cover opacity-30"
           />
         </div>
         {/* Animated background gradient overlay */}
-        <div className="absolute inset-0 bg-linear-to-br from-background-primary/80 via-texas-blue/20 to-background-primary/80" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-linear-to-br from-background-primary/90 via-texas-blue/20 to-background-primary/90" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.15),transparent_50%)]" />
         
         {/* Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
