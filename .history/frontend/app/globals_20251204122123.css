@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background-primary: #0A1929;
+  --color-background-secondary: #1E293B;
+  --color-background-tertiary: #334155;
+  
+  --color-text-primary: #F9FAFB;
+  --color-text-secondary: #94A3B8;
+  --color-text-tertiary: #64748B;
+  
+  --color-accent-primary: #3B82F6;
+  --color-accent-secondary: #8B5CF6;
+  --color-accent-tertiary: #06B6D4;
+  
+  --color-texas-blue: #002868;
+  --color-texas-star: #BF5700;
+  
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: #0A1929;
+  color: #F9FAFB;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #3B82F6;
+  color: #F9FAFB;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1E293B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3B82F6;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+

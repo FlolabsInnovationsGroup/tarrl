@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  /* Background Colors */
+  --color-background-primary: #0A1929;
+  --color-background-secondary: #1E293B;
+  --color-background-tertiary: #334155;
+
+  /* Text Colors */
+  --color-text-primary: #F9FAFB;
+  --color-text-secondary: #94A3B8;
+  --color-text-tertiary: #64748B;
+
+  /* Accent Colors */
+  --color-accent-primary: #3B82F6;
+  --color-accent-secondary: #8B5CF6;
+  --color-accent-tertiary: #06B6D4;
+
+  /* Texas Heritage */
+  --color-texas-blue: #002868;
+  --color-texas-star: #BF5700;
+
+  /* Semantic Colors */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  
+  /* Font families */
+  --font-family-heading: var(--font-heading);
+  --font-family-body: var(--font-body);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: #0A1929;
+  color: #F9FAFB;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  width: 100%;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+::selection {
+  background-color: #3B82F6;
+  color: #F9FAFB;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1E293B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3B82F6;
+}
+
+

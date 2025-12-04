@@ -1,0 +1,55 @@
+export default {
+  kind: 'collectionType',
+  collectionName: 'research_tracks',
+  info: {
+    singularName: 'research-track',
+    pluralName: 'research-tracks',
+    displayName: 'Research Track',
+    description: 'Research areas and tracks offered at TARRL',
+  },
+  options: {
+    draftAndPublish: true,
+  },
+  pluginOptions: {},
+  attributes: {
+    name: {
+      type: 'string',
+      required: true,
+      maxLength: 100,
+    },
+    slug: {
+      type: 'uid',
+      targetField: 'name',
+      required: true,
+    },
+    order: {
+      type: 'integer',
+      required: true,
+      default: 0,
+    },
+    icon: {
+      type: 'string',
+      required: true,
+      default: 'circle',
+    },
+    shortDescription: {
+      type: 'text',
+      required: true,
+      maxLength: 200,
+    },
+    fullDescription: {
+      type: 'richtext',
+      required: true,
+    },
+    examples: {
+      type: 'json',
+      required: false,
+    },
+    status: {
+      type: 'enumeration',
+      enum: ['active', 'planned'],
+      default: 'active',
+      required: true,
+    },
+  },
+};
