@@ -21,9 +21,9 @@ export default function HomePage() {
         {/* Background image */}
         <div className="absolute inset-0">
           <img 
-            src="/images/robotics-lab.jpg" 
-            alt="Advanced robotics research laboratory"
-            className="w-full h-full object-cover opacity-30"
+            src="/images/abstract-tech.jpg" 
+            alt="Advanced robotics and AI technology"
+            className="w-full h-full object-cover opacity-25"
           />
         </div>
         {/* Animated background gradient overlay */}
