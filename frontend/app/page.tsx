@@ -21,7 +21,7 @@ export default function HomePage() {
         {/* Background image */}
         <div className="absolute inset-0">
           <img 
-            src="/images/abstract-tech.jpg" 
+            src="/images/hero-robot.jpg" 
             alt="Advanced robotics and AI technology"
             className="w-full h-full object-cover opacity-25"
           />
