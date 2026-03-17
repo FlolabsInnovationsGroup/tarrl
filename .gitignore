@@ -1,66 +1,48 @@
-
-
-#Ignore vscode AI rules
 # Dependencies
 node_modules/
-.pnp
-.pnp.js
 
-# Testing
-coverage/
-*.lcov
-.nyc_output
-
-# Next.js
-frontend/.next/
-frontend/out/
-frontend/build/
-frontend/.vercel
-
-# Production
-build/
+# Build output
 dist/
-
-# Strapi
-backend/.tmp/
-backend/.cache/
-backend/build/
-backend/dist/
-backend/.strapi-updater.json
-backend/exports/
-backend/public/uploads/*
-!backend/public/uploads/.gitkeep
+build/
+*.local
 
 # Environment variables
 .env
 .env.local
-.env.development
-.env.production
-.env*.local
+.env.*.local
 
-# Debug
+# Logs
+logs/
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-# OS
-.DS_Store
-*.pem
-Thumbs.db
-
-# IDE
-.vscode/
+# Editor / IDE
 .idea/
+.vscode/
 *.swp
 *.swo
 *~
 
-# Misc
-.turbo
-.vercel
-.railway
+# OS
+.DS_Store
+Thumbs.db
 
-# Codacy
-.github/instructions/codacy.instructions.md
+# Vite
+.vite/
+
+# TypeScript
+*.tsbuildinfo
+
+# Cache
+.cache/
+.parcel-cache/
+.turbo/
+
+# Testing
+coverage/
+
+# Optional
+*.local
