@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar } from "./components/Navbar";
-import { Hero } from "./components/Hero";
+import Hero from "./components/Hero";
 import { WhoWeAre, WhyWeExist, WhatWeBelieve } from "./components/Sections";
 import { ResearchTracks } from "./components/ResearchTracks";
 import { ImageCarousel } from "./components/ImageCarousel";
@@ -16,9 +16,8 @@ const App: React.FC = () => {
   return (
     <div
       className="min-h-screen text-offWhite"
-      style={{ background: pageGradient, minHeight: "100%" }}
-    >
-      <Navbar />
+      style={{ background: pageGradient, minHeight: "100%" }}>
+      {/* <Navbar /> */}
       <main className="pt-16">
         <Hero />
         <WhoWeAre />
@@ -36,4 +35,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
