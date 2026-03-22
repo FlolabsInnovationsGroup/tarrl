@@ -16,10 +16,12 @@
   --red-dim: #8c0f1e;
   --blue: #002868;
   --gold: #e8c84a;
-  --mono: "IBM Plex Mono", monospace;
-  --display: "Bebas Neue", sans-serif;
-  --serif: "DM Serif Display", serif;
-  --sans: "Syne", sans-serif;
+  /* Match site body: tailwind theme.fontFamily.sans + index.html Inter */
+  --app-sans: Inter, system-ui, sans-serif;
+  --mono: var(--app-sans);
+  --display: var(--app-sans);
+  --serif: var(--app-sans);
+  --sans: var(--app-sans);
 }
 
 .wrapper {

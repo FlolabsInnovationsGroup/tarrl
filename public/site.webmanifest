@@ -1,0 +1,28 @@
+{
+  "name": "TARRL — Texas Advanced Robotics Research Lab",
+  "short_name": "TARRL",
+  "icons": [
+    {
+      "src": "/favicon-48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo-tarrl.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#002868",
+  "theme_color": "#002868"
+}
