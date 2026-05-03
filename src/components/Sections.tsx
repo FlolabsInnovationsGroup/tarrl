@@ -28,11 +28,13 @@ export const WhoWeAre: React.FC = () => {
   ];
 
   return (
-    <section id="who-we-are" className="relative bg-transparent py-14 sm:py-20 lg:py-24">
+    <section className="relative bg-transparent py-14 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:gap-10 lg:items-center">
           <div className="min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/60">
+            <p
+              id="who-we-are"
+              className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/60">
               Who We Are (And Are Not)
             </p>
 
@@ -139,11 +141,13 @@ export const WhyWeExist: React.FC = () => {
   ];
 
   return (
-    <section id="why-we-exist" className="relative bg-transparent py-14 sm:py-20 lg:py-24">
+    <section className="relative bg-transparent py-14 sm:py-20 lg:py-24">
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-10 lg:gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1.2fr)]">
           <div className="min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
+            <p
+              id="why-we-exist"
+              className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
               Why We Exist
             </p>
             <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">
@@ -284,10 +288,12 @@ export const WhatWeBelieve: React.FC = () => {
   );
 
   return (
-    <section id="what-we-believe" className="relative bg-transparent py-14 sm:py-20 lg:py-24">
+    <section className="relative bg-transparent py-14 sm:py-20 lg:py-24">
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <div className="max-w-3xl min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
+          <p
+            id="what-we-believe"
+            className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
             What We Believe
           </p>
           <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">

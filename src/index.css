@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Fixed Hero nav clears anchor targets: use scroll-padding on the scroll container.
+ * (scroll-margin alone was too small vs. padding + logo row + Apply CTA height.)
+ */
+:root {
+  --site-nav-height: calc(5rem + env(safe-area-inset-top, 0px));
+}
+
+html {
+  scroll-padding-top: var(--site-nav-height);
+}
+
 *,
 *::before,
 *::after {

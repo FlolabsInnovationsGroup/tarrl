@@ -6,9 +6,11 @@ export const ApplyCTA: React.FC = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
-    <section id="apply" className="relative overflow-hidden bg-transparent py-20 sm:py-24">
+    <section className="relative overflow-hidden bg-transparent py-20 sm:py-24">
       <div className="relative mx-auto max-w-3xl px-4 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
+        <p
+          id="apply"
+          className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
           Join TARRL as a Research Associate
         </p>
         <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">

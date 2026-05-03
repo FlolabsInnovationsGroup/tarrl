@@ -3,28 +3,39 @@ import styles from "./styles/Hero.module.css";
 
 const Hero: React.FC = () => {
   return (
-    <div className={styles.wrapper}>
+    <div id="hero" className={styles.wrapper}>
       <nav className={styles.nav}>
-        <a className={styles.navLogo} href="#">
+        <a className={styles.navLogo} href="#hero">
+          <img
+            className={styles.navLogoImg}
+            src="/logo-tarrl.svg"
+            alt=""
+            width={32}
+            height={32}
+          />
           TARRL
         </a>
 
         <ul className={styles.navLinks}>
           <li>
-            <a href="#">Who We Are</a>
+            <a href="#who-we-are">Who We Are</a>
           </li>
           <li>
-            <a href="#">Research Tracks</a>
+            <a href="#research-tracks">Research Tracks</a>
           </li>
           <li>
-            <a href="#">How It Works</a>
+            <a href="#how-it-works">How It Works</a>
           </li>
           <li>
-            <a href="#">Who This Is For</a>
+            <a href="#who-this-is-for">Who This Is For</a>
           </li>
         </ul>
 
-        <a className={styles.navCta} href="#">
+        <a
+          className={styles.navCta}
+          href="https://hephaestus.international/internships"
+          target="_blank"
+          rel="noopener noreferrer">
           Apply Now
         </a>
       </nav>
@@ -81,10 +92,14 @@ const Hero: React.FC = () => {
           </p>
 
           <div className={styles.heroActions}>
-            <a href="#" className={styles.btnPrimary}>
+            <a
+              className={styles.btnPrimary}
+              href="https://hephaestus.international/internships"
+              target="_blank"
+              rel="noopener noreferrer">
               Apply to Join TARRL
             </a>
-            <a href="#" className={styles.btnSecondary}>
+            <a href="mailto:contact@tarrl.org" className={styles.btnSecondary}>
               Learn More
             </a>
           </div>

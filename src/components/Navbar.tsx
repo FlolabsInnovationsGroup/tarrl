@@ -31,12 +31,12 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-40 bg-[rgba(0,25,66,0.85)] backdrop-blur-md transition-colors"
+      className="fixed inset-x-0 top-0 z-40 border-b border-white/15 bg-[rgba(0,40,104,0.48)] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-[22px] backdrop-saturate-[1.2] transition-colors"
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
         <a href="#hero" className="flex items-center gap-2">
           <div className="flex items-center gap-2">
-            <span className="text-2xl font-extrabold tracking-[0.15em] text-offWhite">
+            <span className="text-2xl font-extrabold tracking-[0.15em] text-offWhite [text-shadow:0_1px_4px_rgba(0,0,0,0.55),0_0_20px_rgba(0,25,66,0.35)]">
               TARRL
             </span>
             {/* Texas flag appears exactly once here */}
@@ -98,7 +98,7 @@ export const Navbar: React.FC = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-offWhite/70 transition hover:text-offWhite"
+                className="text-offWhite/85 [text-shadow:0_1px_3px_rgba(0,0,0,0.5)] transition hover:text-offWhite"
               >
                 {link.label}
               </a>

@@ -63,13 +63,12 @@ export const HowItWorks: React.FC = () => {
   const stepNumber = String(activeIndex + 1).padStart(2, "0");
 
   return (
-    <section
-      id="how-it-works"
-      className="relative overflow-hidden bg-transparent py-20 sm:py-24"
-    >
+    <section className="relative overflow-hidden bg-transparent py-20 sm:py-24">
       <div className="relative mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.4fr)]">
         <div className="lg:sticky lg:top-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
+          <p
+            id="how-it-works"
+            className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
             How It Works
           </p>
           <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">

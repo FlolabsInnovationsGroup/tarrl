@@ -41,15 +41,32 @@
   align-items: center;
   justify-content: space-between;
   padding: .8rem 3rem;
-  background: var(--blue);
+  /* #002868 (--blue): more see-through; blur + tint keeps type legible */
+  background: rgba(0, 40, 104, 0.48);
+  backdrop-filter: blur(22px) saturate(1.2);
+  -webkit-backdrop-filter: blur(22px) saturate(1.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .navLogo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-family: var(--display);
   font-size: 1.6rem;
   letter-spacing: 0.12em;
   color: #fff;
   text-decoration: none;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55), 0 0 20px rgba(0, 25, 66, 0.35);
+}
+
+.navLogoImg {
+  height: 1.75rem;
+  width: auto;
+  flex-shrink: 0;
+  display: block;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.45));
 }
 
 .navLinks {
@@ -63,8 +80,9 @@
   font-size: 0.68rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.82);
   text-decoration: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   transition: color 0.2s;
 }
 

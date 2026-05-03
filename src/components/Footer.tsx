@@ -2,20 +2,22 @@ import React from "react";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="relative py-10 text-sm text-offWhite/75">
-      {/* Gradient from page blue/purple into footer dark so there’s no hard line */}
+    <footer className="relative border-t border-white/15 py-10 text-sm text-offWhite/85 backdrop-blur-[24px] backdrop-saturate-[1.15]">
+      {/* Lighter tint so more shows through; blur keeps copy readable */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage: `linear-gradient(
             180deg,
             transparent 0%,
-            rgba(0, 40, 104, 0.4) 5%,
-            #020617 100%
+            rgba(0, 40, 104, 0.18) 10%,
+            rgba(2, 6, 23, 0.58) 100%
           )`
         }}
       />
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-8 px-4 md:flex-row md:items-start md:justify-between">
+      <div
+        className="relative mx-auto flex max-w-6xl flex-col gap-8 px-4 [text-shadow:0_1px_3px_rgba(0,0,0,0.45)] md:flex-row md:items-start md:justify-between"
+      >
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
             TARRL

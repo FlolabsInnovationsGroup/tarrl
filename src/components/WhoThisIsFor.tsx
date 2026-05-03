@@ -15,13 +15,12 @@ export const WhoThisIsFor: React.FC = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
-    <section
-      id="who-this-is-for"
-      className="relative bg-transparent py-20 sm:py-24"
-    >
+    <section className="relative bg-transparent py-20 sm:py-24">
       <div className="relative mx-auto max-w-6xl px-4">
         <div className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
+          <p
+            id="who-this-is-for"
+            className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
             Who This Is For
           </p>
           <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">
