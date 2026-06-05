@@ -1,0 +1,39 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "dependabot/npm_and_yarn/follow-redirects-1.16.0",
+    "dependabot/npm_and_yarn/multi-bf05dc1ecf",
+    "dependabot/npm_and_yarn/multi-daa94fe402",
+    "dependabot/npm_and_yarn/multi-ebf216889e",
+    "dependabot/npm_and_yarn/postcss-8.5.25",
+    "dependabot/npm_and_yarn/sharp-0.35.0",
+    "dependabot/npm_and_yarn/v1/nanoid-3.3.18",
+    "dependabot/npm_and_yarn/v1/sharp-0.35.0",
+    "main",
+    "revamping"
+  ],
+  "parent": {
+    "dependabot/npm_and_yarn/follow-redirects-1.16.0": "main",
+    "dependabot/npm_and_yarn/multi-bf05dc1ecf": "main",
+    "dependabot/npm_and_yarn/multi-daa94fe402": "main",
+    "dependabot/npm_and_yarn/multi-ebf216889e": "main",
+    "dependabot/npm_and_yarn/postcss-8.5.25": "main",
+    "dependabot/npm_and_yarn/sharp-0.35.0": "main",
+    "dependabot/npm_and_yarn/v1/nanoid-3.3.18": "main",
+    "dependabot/npm_and_yarn/v1/sharp-0.35.0": "main",
+    "main": null,
+    "revamping": "main"
+  },
+  "order": [
+    "main",
+    "dependabot/npm_and_yarn/follow-redirects-1.16.0",
+    "dependabot/npm_and_yarn/multi-bf05dc1ecf",
+    "dependabot/npm_and_yarn/multi-daa94fe402",
+    "dependabot/npm_and_yarn/multi-ebf216889e",
+    "dependabot/npm_and_yarn/postcss-8.5.25",
+    "dependabot/npm_and_yarn/sharp-0.35.0",
+    "dependabot/npm_and_yarn/v1/nanoid-3.3.18",
+    "dependabot/npm_and_yarn/v1/sharp-0.35.0",
+    "revamping"
+  ]
+}
