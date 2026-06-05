@@ -173,13 +173,6 @@ export const Footer: React.FC = () => {
                   a FloLabs project
                 </span>
               </div>
-              <p
-                className={`mt-5 max-w-[320px] text-[13px] leading-relaxed ${styles.muted}`}
-              >
-                A brief explanation about the website. A brief explanation about
-                the website. A brief explanation about the website. A brief
-                explanation about the website.
-              </p>
             </div>
 
             <div>
