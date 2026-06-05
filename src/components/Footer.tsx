@@ -25,8 +25,7 @@ const checkMoreColumns = [
   [
     { href: "https://www.caipo.ai/", label: "CAIPO", external: true },
     { href: "https://moodchanger.ai/", label: "MoodChanger", external: true },
-    // TODO: real URL
-    { href: "#", label: "RoboCollective" },
+    { href: "https://www.robocollective.ai/", label: "RoboCollective", external: true },
     {
       href: "https://www.athleticperformanceintelligence.com/#cta",
       label: "Athletic Performance",
@@ -34,7 +33,7 @@ const checkMoreColumns = [
     },
   ],
   [
-    { href: "https://flobrain.vercel.app/", label: "FloBrain", external: true },
+    { href: "https://www.flobrain.ai/", label: "FloBrain", external: true },
     { href: "https://www.flomadtravel.com/", label: "FloTravel", external: true },
     {
       href: "https://www.spaceventuresinstitute.com/",
@@ -53,7 +52,7 @@ const checkMoreColumns = [
       label: "Hepheastus International",
       external: true,
     },
-    { href: "https://www.flostudios.ai/", label: "FloStudio", external: true },
+    { href: "https://www.flostudios.ai/", label: "FloStudios", external: true },
   ],
 ];
 
@@ -90,6 +89,18 @@ const YouTubeIcon: React.FC<{ playFill: string }> = ({ playFill }) => (
   >
     <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8z" />
     <path d="M9.75 15.02 15.5 12 9.75 8.98v6.04z" fill={playFill} />
+  </svg>
+);
+
+const LinkedInIcon: React.FC = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
   </svg>
 );
 
@@ -210,7 +221,7 @@ export const Footer: React.FC = () => {
 
             <div>
               <p className={styles.heading}>Social Media</p>
-              <div className="mt-4">
+              <div className="mt-4 flex items-center gap-4">
                 <a
                   href="https://www.youtube.com/@FloLabsInnovation"
                   target="_blank"
@@ -219,6 +230,15 @@ export const Footer: React.FC = () => {
                   aria-label="YouTube"
                 >
                   <YouTubeIcon playFill={styles.youtubePlayFill} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/flolabs-innovation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${styles.social}`}
+                  aria-label="LinkedIn"
+                >
+                  <LinkedInIcon />
                 </a>
               </div>
             </div>

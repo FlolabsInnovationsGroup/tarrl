@@ -2,6 +2,7 @@ import React, { useRef, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import { ScrollHighlightBlock } from "./ScrollHighlight";
+import { keepLastWordsTogether } from "../utils/typography";
 
 import humanoidPng from "../assets/humanoid-png/humanoids-1.png";
 import robodogPng from "../assets/robodog-png/robodog-1.png";
@@ -55,37 +56,37 @@ export const WhoWeAre: React.FC = () => {
                   className="font-display text-2xl font-medium leading-tight tracking-tight text-ink sm:text-3xl md:text-4xl"
                   variants={fadeInUp}
                 >
-                  {line}
+                  {keepLastWordsTogether(line)}
                 </motion.p>
               ))}
             </motion.div>
 
             <motion.div
-              className="mt-8 max-w-prose space-y-4 text-base leading-relaxed text-inkSoft"
+              className="mt-8 max-w-prose space-y-4 text-pretty text-base leading-relaxed text-inkSoft"
               initial={prefersReducedMotion ? false : "hidden"}
               whileInView="visible"
               viewport={{ once: true, amount: 0.4 }}
               variants={fadeInUp}
             >
               <p>
-                We are Texas Advanced Robotics Research Lab, an open, venture driven Embodied AI
-                institute where curiosity meets courage and AI, robotics, and design collide.
+                {keepLastWordsTogether(
+                  "We are Texas Advanced Robotics Research Lab, an open, venture driven Embodied AI institute where curiosity meets courage and AI, robotics, and design collide."
+                )}
               </p>
               <p>
-                TARRL is built primarily for PhD candidates, current PhDs and postdocs, and experienced
-                industry professionals who want to go beyond papers, titles, and conference badges and
-                actually ship code, systems, and robots that other people can use.
+                {keepLastWordsTogether(
+                  "TARRL is built primarily for PhD candidates, current PhDs and postdocs, and experienced industry professionals who want to go beyond papers, titles, and conference badges and actually ship code, systems, and robots that other people can use."
+                )}
               </p>
               <p>
-                Whether your background is in AI or machine learning, robotics, software engineering,
-                systems architecture, human robot interaction, controls, product design, simulation, or
-                another relevant area, there is space for you to contribute at the Research Associate
-                level.
+                {keepLastWordsTogether(
+                  "Whether your background is in AI or machine learning, robotics, software engineering, systems architecture, human robot interaction, controls, product design, simulation, or another relevant area, there is space for you to contribute at the Research Associate level."
+                )}
               </p>
             </motion.div>
 
             <motion.div
-              className="mt-10 flex flex-wrap gap-3"
+              className="mt-10 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2"
               initial={prefersReducedMotion ? false : "hidden"}
               whileInView="visible"
               viewport={{ once: true, amount: 0.5 }}
@@ -93,14 +94,22 @@ export const WhoWeAre: React.FC = () => {
             >
               <motion.span
                 variants={fadeInUp}
-                className="rounded-pill border border-hairline px-4 py-2 text-sm font-medium text-ink"
+                className="inline-flex items-center gap-2 text-sm font-medium text-inkSoft"
               >
+                <span
+                  className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                  aria-hidden="true"
+                />
                 Remote first by design
               </motion.span>
               <motion.span
                 variants={fadeInUp}
-                className="rounded-pill border border-hairline px-4 py-2 text-sm font-medium text-ink"
+                className="inline-flex items-center gap-2 text-sm font-medium text-inkSoft"
               >
+                <span
+                  className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                  aria-hidden="true"
+                />
                 Join from anywhere
               </motion.span>
             </motion.div>
@@ -168,7 +177,7 @@ export const WhyWeExist: React.FC = () => {
               {problems.map((item) => (
                 <motion.li key={item} className="flex gap-3" variants={fadeInUp}>
                   <span className="mt-2.5 h-1.5 w-1.5 flex-none rounded-full bg-accent" aria-hidden="true" />
-                  <span>{item}</span>
+                    <span>{keepLastWordsTogether(item)}</span>
                 </motion.li>
               ))}
             </motion.ul>
@@ -219,21 +228,23 @@ export const WhyWeExist: React.FC = () => {
               <p className="text-sm font-medium text-inkSoft">
                 Our Verticals
               </p>
-              <div className="mt-4 flex flex-wrap gap-2">
+              <motion.ul
+                className="mt-4 grid gap-x-6 gap-y-3 text-base leading-relaxed text-inkSoft sm:grid-cols-2"
+                initial={prefersReducedMotion ? false : "hidden"}
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
+                variants={staggerChildren}
+              >
                 {verticals.map((vertical) => (
-                  <motion.span
-                    key={vertical}
-                    className="rounded-pill border border-hairline px-4 py-2 text-center text-sm font-medium text-ink transition-colors hover:border-accent/40 hover:bg-canvas"
-                    whileHover={
-                      prefersReducedMotion
-                        ? undefined
-                        : { borderColor: "rgba(26, 115, 232, 0.4)" }
-                    }
-                  >
-                    {vertical}
-                  </motion.span>
+                  <motion.li key={vertical} className="flex gap-3" variants={fadeInUp}>
+                    <span
+                      className="mt-2.5 h-1.5 w-1.5 flex-none rounded-full bg-accent"
+                      aria-hidden="true"
+                    />
+                    <span>{keepLastWordsTogether(vertical)}</span>
+                  </motion.li>
                 ))}
-              </div>
+              </motion.ul>
             </div>
           </div>
 
@@ -366,10 +377,10 @@ export const WhatWeBelieve: React.FC = () => {
           >
             What We Believe
           </p>
-          <h2 className="mt-3 max-w-3xl font-display text-3xl font-medium leading-tight tracking-tight text-white sm:text-4xl">
+          <h2 className="mt-3 w-full text-pretty font-display text-3xl font-medium leading-tight tracking-tight text-white sm:text-4xl">
             We are not here to give you one more credential and send you back to business as usual.
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#9AA0A6]">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#9AA0A6] lg:max-w-3xl xl:max-w-4xl">
             We exist to put you closer to the center of what comes next in Embodied AI.
           </p>
         </div>
@@ -398,10 +409,10 @@ export const WhatWeBelieve: React.FC = () => {
                   className="mb-6 h-14 w-14 object-contain sm:h-16 sm:w-16"
                 />
                 <h3 className="max-w-[16rem] font-display text-lg font-bold leading-snug text-white sm:text-xl">
-                  {belief.title}
+                  {keepLastWordsTogether(belief.title)}
                 </h3>
                 <p className="mt-3 max-w-[16rem] text-[0.9375rem] leading-[1.5] text-[#9AA0A6] sm:text-base">
-                  {belief.body}
+                  {keepLastWordsTogether(belief.body)}
                 </p>
               </motion.article>
             ))}
@@ -434,7 +445,7 @@ export const WhatWeBelieve: React.FC = () => {
         </div>
 
         <motion.p
-          className="mt-14 max-w-2xl text-base leading-relaxed text-[#9AA0A6] lg:mt-16"
+          className="mt-14 w-full text-pretty text-base leading-relaxed text-[#9AA0A6] sm:text-[1.0625rem] lg:mt-16 lg:text-lg lg:leading-relaxed"
           initial={prefersReducedMotion ? false : "hidden"}
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}

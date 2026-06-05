@@ -43,8 +43,8 @@ export const ApplyCTA: React.FC = () => {
             ambitious open Embodied AI projects in education, health, travel and hospitality,
             entertainment, and the space sector.
           </p>
-          <div className="mx-auto mt-10 grid max-w-xl gap-6 sm:grid-cols-2 sm:gap-8 sm:text-left">
-            <div className="flex flex-col items-center gap-3 sm:items-start">
+          <div className="mx-auto mt-10 grid max-w-2xl gap-6 text-center sm:grid-cols-2 sm:gap-8">
+            <div className="flex flex-col items-center gap-3">
               <img
                 src="/you_bring.png"
                 alt=""
@@ -57,7 +57,7 @@ export const ApplyCTA: React.FC = () => {
                 The expertise, curiosity, and drive
               </p>
             </div>
-            <div className="flex flex-col items-center gap-3 sm:items-start">
+            <div className="flex flex-col items-center gap-3">
               <img
                 src="/we_provide.png"
                 alt=""
@@ -67,7 +67,9 @@ export const ApplyCTA: React.FC = () => {
               <p className="text-base leading-relaxed text-white/90">
                 <span className="font-bold text-white">We provide</span>
                 <br />
-                The robots, infrastructure, and mission
+                <span className="whitespace-nowrap">
+                  The robots, infrastructure, and mission
+                </span>
               </p>
             </div>
           </div>

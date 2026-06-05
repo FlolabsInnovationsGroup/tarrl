@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import humanoidPng from "../assets/humanoid-png/humanoids-2.png";
+import { keepLastWordsTogether } from "../utils/typography";
 
 const steps = [
   {
@@ -50,10 +51,10 @@ const StepItem: React.FC<{
         Step {String(index + 1).padStart(2, "0")}
       </p>
       <h3 className="mt-1 font-display text-lg font-medium text-ink">
-        {step.title}
+        {keepLastWordsTogether(step.title)}
       </h3>
       <p className="mt-2 text-base leading-relaxed text-inkSoft">
-        {step.body}
+        {keepLastWordsTogether(step.body)}
       </p>
     </div>
   );
@@ -77,10 +78,12 @@ export const HowItWorks: React.FC = () => {
             How It Works
           </p>
           <h2 className="mt-3 font-display text-3xl font-medium leading-tight tracking-tight text-ink sm:text-4xl">
-            Remote first is not a compromise in this model, it is a force multiplier.
+            {keepLastWordsTogether(
+              "Remote first is not a compromise in this model, it is a force multiplier."
+            )}
           </h2>
           <p className="mt-4 max-w-md text-base leading-relaxed text-inkSoft">
-            Your location should not limit your impact.
+            {keepLastWordsTogether("Your location should not limit your impact.")}
           </p>
           <motion.div
             className="mt-10 overflow-hidden rounded-xl3 border border-hairline bg-canvas shadow-card"
@@ -94,9 +97,10 @@ export const HowItWorks: React.FC = () => {
             <div className="relative flex min-h-[10rem] items-center justify-center p-8">
               <motion.div
                 key={stepNumber}
-                className="pointer-events-none select-none font-display text-[5rem] font-medium tracking-tight text-ink/[0.06] md:text-[7rem]"
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 flex select-none items-center justify-center font-display text-[5rem] font-medium tracking-tight text-inkSoft opacity-[0.18] md:text-[7rem]"
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-                animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                animate={prefersReducedMotion ? undefined : { opacity: 0.18, y: 0 }}
                 transition={
                   prefersReducedMotion
                     ? undefined
@@ -105,7 +109,7 @@ export const HowItWorks: React.FC = () => {
               >
                 {stepNumber}
               </motion.div>
-              <div className="absolute inset-x-6 grid grid-cols-3 gap-2 text-center text-xs font-medium text-inkSoft sm:inset-x-10">
+              <div className="relative z-10 grid w-full grid-cols-3 gap-2 px-2 text-center text-xs font-medium text-ink sm:px-4">
                 <span>Remote First</span>
                 <span>Embodied AI</span>
                 <span>Open-source robotics</span>

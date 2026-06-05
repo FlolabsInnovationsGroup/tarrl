@@ -29,7 +29,7 @@ module.exports = {
         cardHover: "var(--shadow-card-hover)"
       },
       maxWidth: {
-        content: "1280px"
+        content: "min(1520px, calc(100vw - 4rem))"
       },
       spacing: {
         section: "clamp(7.5rem, 12vw, 11.25rem)"
