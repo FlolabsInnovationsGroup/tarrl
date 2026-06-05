@@ -9,16 +9,11 @@ import { WhoThisIsFor } from "./components/WhoThisIsFor";
 import { ApplyCTA } from "./components/ApplyCTA";
 import { Footer } from "./components/Footer";
 
-const pageGradient =
-  "linear-gradient(to bottom, #001942 0%, #001942 20%, #311050 45%, #311050 60%, #00245E 80%, #00245E 100%)";
-
 const App: React.FC = () => {
   return (
-    <div
-      className="min-h-screen text-offWhite"
-      style={{ background: pageGradient, minHeight: "100%" }}>
-      {/* <Navbar /> */}
-      <main className="pt-16">
+    <div className="min-h-screen bg-canvas text-ink">
+      <Navbar />
+      <main>
         <Hero />
         <WhoWeAre />
         <WhyWeExist />

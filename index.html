@@ -10,22 +10,30 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#002868" />
+    <meta name="theme-color" content="#F8F8F7" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("tarrl-theme");
+        var dark =
+          t === "dark" ||
+          (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body class="bg-texasBlue text-offWhite">
+  <body class="bg-canvas text-ink antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
   <style>
     html {
       scroll-behavior: smooth;
-      background-color: #002868;
     }
     @media (prefers-reduced-motion: reduce) {
       html {
@@ -34,4 +42,3 @@
     }
   </style>
 </html>
-

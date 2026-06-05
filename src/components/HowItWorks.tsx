@@ -35,20 +35,24 @@ const StepItem: React.FC<{
 }> = ({ step, index, active, onMouseEnter, onMouseLeave }) => {
   return (
     <div
-      className={`relative border-l border-offWhite/15 pl-5 py-5 transition-colors ${
-        active ? "border-maroon" : ""
+      className={`relative border-l-2 pl-6 py-5 transition-colors ${
+        active ? "border-[#BF0A30]" : "border-hairline"
       }`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <div className="absolute -left-[3px] top-6 h-2 w-2 rounded-full bg-offWhite" />
-      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-offWhite/60">
+      <div
+        className={`absolute -left-[5px] top-7 h-2.5 w-2.5 rounded-full transition-colors ${
+          active ? "bg-[#BF0A30]" : "bg-inkSoft/30"
+        }`}
+      />
+      <p className="text-xs font-medium text-inkSoft">
         Step {String(index + 1).padStart(2, "0")}
       </p>
-      <h3 className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-offWhite/85">
+      <h3 className="mt-1 font-display text-lg font-medium text-ink">
         {step.title}
       </h3>
-      <p className="mt-2 text-sm leading-relaxed text-offWhite/80">
+      <p className="mt-2 text-base leading-relaxed text-inkSoft">
         {step.body}
       </p>
     </div>
@@ -63,22 +67,23 @@ export const HowItWorks: React.FC = () => {
   const stepNumber = String(activeIndex + 1).padStart(2, "0");
 
   return (
-    <section className="relative overflow-hidden bg-transparent py-20 sm:py-24">
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.4fr)]">
-        <div className="lg:sticky lg:top-28">
+    <section className="relative overflow-hidden bg-paper py-section">
+      <div className="relative mx-auto grid max-w-content gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-16">
+        <div className="lg:sticky lg:top-28 lg:self-start">
           <p
             id="how-it-works"
-            className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
+            className="text-sm font-medium text-inkSoft"
+          >
             How It Works
           </p>
-          <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">
+          <h2 className="mt-3 font-display text-3xl font-medium leading-tight tracking-tight text-ink sm:text-4xl">
             Remote first is not a compromise in this model, it is a force multiplier.
           </h2>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-offWhite/80 md:text-base">
+          <p className="mt-4 max-w-md text-base leading-relaxed text-inkSoft">
             Your location should not limit your impact.
           </p>
           <motion.div
-            className="mt-10 flex h-40 items-center justify-center overflow-hidden rounded-3xl border border-offWhite/15 bg-texasBlue/60"
+            className="mt-10 overflow-hidden rounded-xl3 border border-hairline bg-canvas shadow-card"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
             whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -86,10 +91,10 @@ export const HowItWorks: React.FC = () => {
               prefersReducedMotion ? undefined : { duration: 0.6, ease: "easeOut" }
             }
           >
-            <div className="relative flex h-full w-full items-center justify-center">
+            <div className="relative flex min-h-[10rem] items-center justify-center p-8">
               <motion.div
                 key={stepNumber}
-                className="text-[5rem] font-extrabold tracking-tight text-offWhite/5 md:text-[7rem]"
+                className="pointer-events-none select-none font-display text-[5rem] font-medium tracking-tight text-ink/[0.06] md:text-[7rem]"
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                 animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                 transition={
@@ -100,19 +105,23 @@ export const HowItWorks: React.FC = () => {
               >
                 {stepNumber}
               </motion.div>
-              <div className="absolute inset-x-10 grid grid-cols-3 text-center align-center text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-offWhite/60">
-                <span className="mt-1.5">Remote First</span>
-                <span className="mt-1.5">Embodied AI</span>
-                <span className="">Open-source robotics</span>
+              <div className="absolute inset-x-6 grid grid-cols-3 gap-2 text-center text-xs font-medium text-inkSoft sm:inset-x-10">
+                <span>Remote First</span>
+                <span>Embodied AI</span>
+                <span>Open-source robotics</span>
               </div>
             </div>
           </motion.div>
-          <div className="hidden justify-center lg:flex">
-            <img src={humanoidPng} alt="" className="max-h-[260px]" />
+          <div className="mt-8 hidden justify-center lg:flex">
+            <img
+              src={humanoidPng}
+              alt=""
+              className="max-h-[260px] w-auto object-contain"
+            />
           </div>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-1">
           {steps.map((step, index) => (
             <StepItem
               key={step.id}
@@ -128,4 +137,3 @@ export const HowItWorks: React.FC = () => {
     </section>
   );
 };
-

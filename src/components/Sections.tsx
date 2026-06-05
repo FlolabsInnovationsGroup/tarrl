@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
+import { ScrollHighlightBlock } from "./ScrollHighlight";
 
 import humanoidPng from "../assets/humanoid-png/humanoids-1.png";
 import robodogPng from "../assets/robodog-png/robodog-1.png";
@@ -19,6 +20,8 @@ const staggerChildren = {
   }
 };
 
+const sectionPad = "py-section";
+
 export const WhoWeAre: React.FC = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
   const lines = [
@@ -28,18 +31,19 @@ export const WhoWeAre: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-transparent py-14 sm:py-20 lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:gap-10 lg:items-center">
+    <section className={`relative bg-paper ${sectionPad}`}>
+      <div className="mx-auto max-w-content px-4 sm:px-6">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div className="min-w-0">
             <p
               id="who-we-are"
-              className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/60">
+              className="text-sm font-medium text-inkSoft"
+            >
               Who We Are (And Are Not)
             </p>
 
             <motion.div
-              className="mt-8 space-y-4 border-l-2 border-texasRed/70 pl-5 sm:pl-6"
+              className="mt-6 space-y-3"
               initial={prefersReducedMotion ? false : "hidden"}
               whileInView="visible"
               viewport={{ once: true, amount: 0.4 }}
@@ -48,7 +52,7 @@ export const WhoWeAre: React.FC = () => {
               {lines.map((line) => (
                 <motion.p
                   key={line}
-                  className="text-xl font-extrabold leading-tight tracking-tight sm:text-2xl md:text-3xl"
+                  className="font-display text-2xl font-medium leading-tight tracking-tight text-ink sm:text-3xl md:text-4xl"
                   variants={fadeInUp}
                 >
                   {line}
@@ -57,7 +61,7 @@ export const WhoWeAre: React.FC = () => {
             </motion.div>
 
             <motion.div
-              className="mt-8 max-w-3xl space-y-4 text-sm leading-relaxed text-offWhite/80 md:text-base"
+              className="mt-8 max-w-prose space-y-4 text-base leading-relaxed text-inkSoft"
               initial={prefersReducedMotion ? false : "hidden"}
               whileInView="visible"
               viewport={{ once: true, amount: 0.4 }}
@@ -81,24 +85,24 @@ export const WhoWeAre: React.FC = () => {
             </motion.div>
 
             <motion.div
-              className="mt-10 flex flex-wrap gap-4 text-sm"
+              className="mt-10 flex flex-wrap gap-3"
               initial={prefersReducedMotion ? false : "hidden"}
               whileInView="visible"
               viewport={{ once: true, amount: 0.5 }}
               variants={staggerChildren}
             >
-              <motion.div
+              <motion.span
                 variants={fadeInUp}
-                className="rounded-2xl border border-offWhite/10 bg-texasBlue/30 px-4 py-3"
+                className="rounded-pill border border-hairline px-4 py-2 text-sm font-medium text-ink"
               >
-                <p className="cursor-default text-sm font-medium text-offWhite/85">Remote first by design</p>
-              </motion.div>
-              <motion.div
+                Remote first by design
+              </motion.span>
+              <motion.span
                 variants={fadeInUp}
-                className="rounded-2xl border border-offWhite/10 bg-texasBlue/30 px-4 py-3"
+                className="rounded-pill border border-hairline px-4 py-2 text-sm font-medium text-ink"
               >
-                <p className="cursor-default text-sm font-medium text-offWhite/85">Join from anywhere</p>
-              </motion.div>
+                Join from anywhere
+              </motion.span>
             </motion.div>
           </div>
 
@@ -110,12 +114,12 @@ export const WhoWeAre: React.FC = () => {
             variants={fadeInUp}
           >
             <img
-              src={humanoidPng}
-              alt="Humanoid robotics"
-              className="max-h-[200px] w-auto max-w-full object-contain sm:max-h-[280px] lg:max-h-[360px]"
-              loading="lazy"
-              decoding="async"
-            />
+                src={humanoidPng}
+                alt="Humanoid robotics"
+                className="max-h-[280px] w-auto max-w-full object-contain sm:max-h-[360px] lg:max-h-[420px]"
+                loading="lazy"
+                decoding="async"
+              />
           </motion.div>
         </div>
       </div>
@@ -141,20 +145,21 @@ export const WhyWeExist: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-transparent py-14 sm:py-20 lg:py-24">
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid gap-10 lg:gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1.2fr)]">
+    <section className={`relative bg-canvas ${sectionPad}`}>
+      <div className="relative mx-auto max-w-content px-4 sm:px-6">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="min-w-0">
             <p
               id="why-we-exist"
-              className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
+              className="text-sm font-medium text-inkSoft"
+            >
               Why We Exist
             </p>
-            <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">
+            <h2 className="mt-3 font-display text-3xl font-medium leading-tight tracking-tight text-ink sm:text-4xl">
               In advanced robotics and AI, access is often a maze
             </h2>
             <motion.ul
-              className="mt-6 space-y-3 text-sm leading-relaxed text-offWhite/85 md:text-base"
+              className="mt-8 space-y-4 text-base leading-relaxed text-inkSoft"
               initial={prefersReducedMotion ? false : "hidden"}
               whileInView="visible"
               viewport={{ once: true, amount: 0.4 }}
@@ -162,14 +167,14 @@ export const WhyWeExist: React.FC = () => {
             >
               {problems.map((item) => (
                 <motion.li key={item} className="flex gap-3" variants={fadeInUp}>
-                  <span className="mt-1 h-px w-4 flex-none bg-texasRed" aria-hidden="true" />
+                  <span className="mt-2.5 h-1.5 w-1.5 flex-none rounded-full bg-accent" aria-hidden="true" />
                   <span>{item}</span>
                 </motion.li>
               ))}
             </motion.ul>
 
             <motion.p
-              className="mt-6 max-w-xl text-sm leading-relaxed text-offWhite/80 md:text-base"
+              className="mt-8 max-w-prose text-base leading-relaxed text-inkSoft"
               initial={prefersReducedMotion ? false : "hidden"}
               whileInView="visible"
               viewport={{ once: true, amount: 0.4 }}
@@ -180,7 +185,7 @@ export const WhyWeExist: React.FC = () => {
             </motion.p>
 
             <motion.p
-              className="mt-4 max-w-xl text-sm leading-relaxed text-offWhite/80 md:text-base"
+              className="mt-4 max-w-prose text-base leading-relaxed text-inkSoft"
               initial={prefersReducedMotion ? false : "hidden"}
               whileInView="visible"
               viewport={{ once: true, amount: 0.4 }}
@@ -192,7 +197,7 @@ export const WhyWeExist: React.FC = () => {
             </motion.p>
           </div>
 
-          <div className="flex flex-col gap-6 sm:gap-8 min-w-0">
+          <div className="flex flex-col gap-8 min-w-0">
             <motion.div
               className="flex justify-center min-w-0"
               initial={prefersReducedMotion ? false : "hidden"}
@@ -200,28 +205,30 @@ export const WhyWeExist: React.FC = () => {
               viewport={{ once: true, amount: 0.4 }}
               variants={fadeInUp}
             >
-              <img
-                src={robodogPng}
-                alt="Robotic dog platform"
-                className="max-h-[160px] w-auto max-w-full object-contain sm:max-h-[200px] md:max-h-[240px]"
-                loading="lazy"
-                decoding="async"
-              />
+              <div className="w-full overflow-hidden rounded-xl3 border border-hairline bg-paper shadow-card">
+                <img
+                  src={robodogPng}
+                  alt="Robotic dog platform"
+                  className="max-h-[200px] w-full max-w-full object-contain p-6 sm:max-h-[260px] md:max-h-[300px]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </motion.div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
+              <p className="text-sm font-medium text-inkSoft">
                 Our Verticals
               </p>
-              <div className="mt-4 grid grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] gap-3">
+              <div className="mt-4 flex flex-wrap gap-2">
                 {verticals.map((vertical) => (
                   <motion.span
                     key={vertical}
-                    className="flex cursor-default items-center justify-center rounded-full border border-offWhite/25 px-3.5 py-1.5 text-center text-xs font-medium text-offWhite/85 w-full"
-                    whileHover={{
-                      borderColor: "#BF0A30",
-                      backgroundColor: "rgba(140,28,58,0.25)",
-                      transition: { duration: 0.18 }
-                    }}
+                    className="rounded-pill border border-hairline px-4 py-2 text-center text-sm font-medium text-ink transition-colors hover:border-accent/40 hover:bg-canvas"
+                    whileHover={
+                      prefersReducedMotion
+                        ? undefined
+                        : { borderColor: "rgba(26, 115, 232, 0.4)" }
+                    }
                   >
                     {vertical}
                   </motion.span>
@@ -230,20 +237,16 @@ export const WhyWeExist: React.FC = () => {
             </div>
           </div>
 
-          <motion.div
-            className="w-full rounded-2xl sm:rounded-3xl border border-offWhite/10 bg-purple/30 p-4 sm:p-5 text-sm leading-relaxed text-offWhite/80 [&_p]:cursor-default lg:col-span-2"
-            initial={prefersReducedMotion ? false : "hidden"}
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
-            variants={fadeInUp}
+          <ScrollHighlightBlock
+            prefersReducedMotion={prefersReducedMotion}
+            color="#1A73E8"
+            className="w-full lg:col-span-2"
           >
-            <p>
-              Through our connection to the Texas innovation and space ecosystem, including NASA
-              related activity, SpaceX and other space leaders, and collaboration with Texas A&M,
-              TARRL is well positioned to explore how Embodied AI and robotics can support space
-              industry challenges, from terrestrial testbeds to off world scenarios.
-            </p>
-          </motion.div>
+            Through our connection to the Texas innovation and space ecosystem, including NASA
+            related activity, SpaceX and other space leaders, and collaboration with Texas A&M,
+            TARRL is well positioned to explore how Embodied AI and robotics can support space
+            industry challenges, from terrestrial testbeds to off world scenarios.
+          </ScrollHighlightBlock>
         </div>
       </div>
     </section>
@@ -252,91 +255,186 @@ export const WhyWeExist: React.FC = () => {
 
 export const WhatWeBelieve: React.FC = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const beliefs = [
     {
       title: "Turn ideas into reality",
-      body: "Turn your research ideas into running code, robots, and experiments."
+      body: "Turn your research ideas into running code, robots, and experiments.",
+      icon: "/turn_ideas_into_reality.png"
     },
     {
       title: "Open source stacks",
-      body: "Prototype open source stacks that others can build on and cite."
+      body: "Prototype open source stacks that others can build on and cite.",
+      icon: "/stack.png"
     },
     {
       title: "Ambitious concepts",
-      body: "Explore ambitious concepts that do not fit neatly into a single grant or corporate roadmap."
+      body: "Explore ambitious concepts that do not fit neatly into a single grant or corporate roadmap.",
+      icon: "/concept.png"
     },
     {
       title: "Global community",
-      body: "Work with a global, remote first community of serious builders who care about impact and rigor."
+      body: "Work with a global, remote first community of serious builders who care about impact and rigor.",
+      icon: "/global.png"
     }
   ];
 
-  const icon = (
-    <svg
-      viewBox="0 0 32 32"
-      className="h-6 w-6 text-offWhite/80"
-      aria-hidden="true"
-    >
-      <path
-        d="M6 22L14 8l4 7 8-5-8 14-4-7-8 5z"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.4"
-      />
-    </svg>
+  const startVideo = useCallback(() => {
+    const video = videoRef.current;
+    if (!video || prefersReducedMotion) return;
+    void video.play().catch(() => {});
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+
+    const video = videoRef.current;
+    if (!video) return;
+
+    startVideo();
+
+    const section = video.closest("section");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) startVideo();
+        else video.pause();
+      },
+      { threshold: 0, rootMargin: "100px 0px" }
+    );
+
+    if (section) observer.observe(section);
+
+    const onVisible = () => {
+      if (document.visibilityState === "visible") startVideo();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", onVisible);
+      video.pause();
+    };
+  }, [prefersReducedMotion, startVideo]);
+
+  const scrollByCard = useCallback(
+    (direction: "prev" | "next") => {
+      const el = scrollRef.current;
+      if (!el) return;
+      const card = el.querySelector<HTMLElement>("[data-belief-card]");
+      const gap = parseFloat(getComputedStyle(el).columnGap || getComputedStyle(el).gap) || 32;
+      const amount = card ? card.offsetWidth + gap : el.clientWidth * 0.85;
+      el.scrollBy({
+        left: direction === "next" ? amount : -amount,
+        behavior: prefersReducedMotion ? "auto" : "smooth"
+      });
+    },
+    [prefersReducedMotion]
   );
 
   return (
-    <section className="relative bg-transparent py-14 sm:py-20 lg:py-24">
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="max-w-3xl min-w-0">
+    <section className="relative overflow-hidden bg-[#0B0B0B] py-section text-white">
+      <video
+        ref={videoRef}
+        autoPlay={!prefersReducedMotion}
+        muted
+        loop
+        playsInline
+        preload="auto"
+        src="/tarrl-bg-1080.mp4"
+        poster={prefersReducedMotion ? "/tarrl-bg-poster.jpg" : undefined}
+        aria-hidden="true"
+        onLoadedData={startVideo}
+        onCanPlay={startVideo}
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-center"
+      >
+        <source src="/tarrl-bg-1080.mp4" type="video/mp4" />
+        <source src="/tarrl-bg-1080.webm" type="video/webm" />
+      </video>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[1] bg-[#0B0B0B]/55 bg-gradient-to-b from-[#0B0B0B]/65 via-[#0B0B0B]/45 to-[#0B0B0B]/70"
+      />
+
+      <div className="relative z-10 mx-auto w-full max-w-content px-4 sm:px-6">
+        <div className="mb-14 lg:mb-20">
           <p
             id="what-we-believe"
-            className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
+            className="text-sm font-medium text-[#9AA0A6]"
+          >
             What We Believe
           </p>
-          <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">
+          <h2 className="mt-3 max-w-3xl font-display text-3xl font-medium leading-tight tracking-tight text-white sm:text-4xl">
             We are not here to give you one more credential and send you back to business as usual.
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-offWhite/80 md:text-base">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#9AA0A6]">
             We exist to put you closer to the center of what comes next in Embodied AI.
           </p>
         </div>
 
-        <motion.div
-          className="mt-8 sm:mt-10 grid gap-4 sm:gap-6 md:grid-cols-2"
-          initial={prefersReducedMotion ? false : "hidden"}
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={staggerChildren}
-        >
-          {beliefs.map((belief) => (
-            <motion.div
-              key={belief.title}
-              variants={fadeInUp}
-              className="backdrop-card group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-offWhite/10 p-4 sm:p-5 transition-colors min-w-0 [&_h3]:cursor-default [&_p]:cursor-default"
-            >
-              <div className="pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-100">
-                <div className="h-full w-full bg-[radial-gradient(circle_at_top,_rgba(140,28,58,0.45),_transparent_60%)]" />
-              </div>
-              <div className="relative flex flex-col gap-4">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="rounded-full border border-offWhite/20 bg-texasBlue/60 p-2">
-                    {icon}
-                  </div>
-                </div>
-                <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-offWhite/80">
+        <div className="relative">
+          <motion.div
+            ref={scrollRef}
+            className="flex w-full snap-x snap-mandatory gap-8 overflow-x-auto scroll-smooth pb-2 scrollbar-hide sm:gap-10 lg:grid lg:snap-none lg:grid-cols-4 lg:overflow-visible lg:pb-0"
+            style={{ WebkitOverflowScrolling: "touch" }}
+            initial={prefersReducedMotion ? false : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerChildren}
+          >
+            {beliefs.map((belief) => (
+              <motion.article
+                key={belief.title}
+                data-belief-card
+                variants={fadeInUp}
+                className="group flex w-[min(78vw,320px)] shrink-0 snap-start flex-col transition-transform duration-300 hover:-translate-y-0.5 lg:w-full lg:shrink"
+              >
+                <img
+                  src={belief.icon}
+                  alt=""
+                  decoding="async"
+                  className="mb-6 h-14 w-14 object-contain sm:h-16 sm:w-16"
+                />
+                <h3 className="max-w-[16rem] font-display text-lg font-bold leading-snug text-white sm:text-xl">
                   {belief.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-offWhite/80">{belief.body}</p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+                <p className="mt-3 max-w-[16rem] text-[0.9375rem] leading-[1.5] text-[#9AA0A6] sm:text-base">
+                  {belief.body}
+                </p>
+              </motion.article>
+            ))}
+          </motion.div>
+
+          <div className="mt-8 lg:hidden">
+            <div className="inline-flex items-center rounded-full border border-white/[0.12] bg-[#0E0E0E]/80 p-1 backdrop-blur-sm">
+              <button
+                type="button"
+                onClick={() => scrollByCard("prev")}
+                className="flex h-10 w-10 items-center justify-center rounded-full text-[#9AA0A6] transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4D8BFF]"
+                aria-label="Scroll beliefs left"
+              >
+                <span className="text-xl leading-none" aria-hidden="true">
+                  ‹
+                </span>
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollByCard("next")}
+                className="flex h-10 w-10 items-center justify-center rounded-full text-[#9AA0A6] transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4D8BFF]"
+                aria-label="Scroll beliefs right"
+              >
+                <span className="text-xl leading-none" aria-hidden="true">
+                  ›
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
 
         <motion.p
-          className="mt-10 max-w-3xl text-sm leading-relaxed text-offWhite/80 md:text-base"
+          className="mt-14 max-w-2xl text-base leading-relaxed text-[#9AA0A6] lg:mt-16"
           initial={prefersReducedMotion ? false : "hidden"}
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}

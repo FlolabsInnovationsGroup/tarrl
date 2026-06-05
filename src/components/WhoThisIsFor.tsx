@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
+import { ScrollHighlight } from "./ScrollHighlight";
 
 const items = [
   "PhD candidates, PhDs, postdocs, or experienced practitioners in AI, robotics, software, systems, design, or closely related fields",
@@ -15,21 +16,29 @@ export const WhoThisIsFor: React.FC = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
-    <section className="relative bg-transparent py-20 sm:py-24">
-      <div className="relative mx-auto max-w-6xl px-4">
-        <div className="max-w-3xl">
-          <p
-            id="who-this-is-for"
-            className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
-            Who This Is For
-          </p>
-          <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">
-            TARRL Research Associate roles are internship style positions designed primarily for PhD level and experienced candidates, with an open door for exceptional and highly motivated applicants from other paths.
-          </h2>
-        </div>
+    <section className="relative bg-canvas py-section">
+      <div className="relative mx-auto max-w-content px-4 sm:px-6">
+        <p
+          id="who-this-is-for"
+          className="text-sm font-medium text-inkSoft"
+        >
+          Who This Is For
+        </p>
+
+        <h2 className="mt-8 w-full max-w-5xl text-xl font-medium leading-[1.55] text-ink sm:text-2xl sm:leading-[1.5] lg:text-[1.75rem] lg:leading-[1.45]">
+          TARRL Research Associate roles are{" "}
+          <ScrollHighlight prefersReducedMotion={prefersReducedMotion}>
+            internship
+          </ScrollHighlight>{" "}
+          style positions designed primarily for PhD level and experienced candidates, with an{" "}
+          <ScrollHighlight prefersReducedMotion={prefersReducedMotion}>
+            open door
+          </ScrollHighlight>{" "}
+          for exceptional and highly motivated applicants from other paths.
+        </h2>
 
         <motion.div
-          className="mt-8 space-y-3"
+          className="mt-14 space-y-3 lg:mt-16"
           initial={prefersReducedMotion ? false : "hidden"}
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
@@ -43,19 +52,18 @@ export const WhoThisIsFor: React.FC = () => {
           }}
         >
           {items.map((item) => (
-            <motion.button
+            <motion.div
               key={item}
-              type="button"
               variants={{
                 hidden: { opacity: 0, y: 16 },
                 visible: { opacity: 1, y: 0 }
               }}
-              className="group flex w-full items-start gap-3 rounded-2xl border border-offWhite/15 bg-texasBlue/70 px-4 py-3 text-left text-sm leading-relaxed text-offWhite/85 transition-colors"
+              className="group flex w-full items-start gap-4 rounded-xl3 border border-hairline bg-paper px-5 py-4 text-left text-base leading-relaxed text-ink shadow-card transition-shadow hover:shadow-cardHover"
             >
-              <span className="mt-1 flex h-4 w-4 flex-none items-center justify-center rounded-[6px] border border-offWhite/40 bg-transparent transition-colors group-hover:border-texasRed group-hover:bg-texasRed">
+              <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md border-2 border-hairline bg-canvas transition-colors group-hover:border-accent group-hover:bg-accent">
                 <svg
                   viewBox="0 0 16 16"
-                  className="h-3 w-3 text-offWhite opacity-0 transition-opacity group-hover:opacity-100"
+                  className="h-3 w-3 text-white opacity-0 transition-opacity group-hover:opacity-100"
                   aria-hidden="true"
                 >
                   <polyline
@@ -69,12 +77,12 @@ export const WhoThisIsFor: React.FC = () => {
                 </svg>
               </span>
               <span>{item}</span>
-            </motion.button>
+            </motion.div>
           ))}
         </motion.div>
 
         <motion.p
-          className="mt-8 max-w-3xl text-sm leading-relaxed text-offWhite/80 md:text-base"
+          className="mt-10 max-w-prose text-base leading-relaxed text-inkSoft"
           initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
           whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
@@ -88,4 +96,3 @@ export const WhoThisIsFor: React.FC = () => {
     </section>
   );
 };
-

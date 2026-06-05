@@ -1,8 +1,6 @@
-import React, { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
-// Only humanoid/ and robodog/ assets (exclude humanoid-png, robodog-png)
 import humanoid1 from "../assets/humanoid/humanoids-1.jpg";
 import humanoid5 from "../assets/humanoid/humanoids-5.png";
 import humanoid6 from "../assets/humanoid/humanoids-6.jpg";
@@ -18,35 +16,56 @@ const CAROUSEL_IMAGES = [
 ];
 
 const AUTOPLAY_INTERVAL_MS = 5000;
+const SLIDE_WIDTH_PERCENT = 82;
 
 export const ImageCarousel: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  const scrollToIndex = (index: number) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const slideWidth = el.clientWidth;
-    el.scrollTo({ left: index * slideWidth, behavior: "smooth" });
-  };
+  const scrollToIndex = useCallback(
+    (index: number) => {
+      const el = scrollRef.current;
+      if (!el) return;
+      const slide = el.querySelector<HTMLElement>(`[data-slide="${index}"]`);
+      if (!slide) return;
 
-  // Sync active index from scroll position (scroll-snap)
+      const targetLeft =
+        slide.offsetLeft - (el.clientWidth - slide.offsetWidth) / 2;
+
+      el.scrollTo({
+        left: targetLeft,
+        behavior: prefersReducedMotion ? "auto" : "smooth"
+      });
+      setActiveIndex(index);
+    },
+    [prefersReducedMotion]
+  );
+
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
     const handleScroll = () => {
-      const slideWidth = el.clientWidth;
-      const index = Math.round(el.scrollLeft / slideWidth);
-      setActiveIndex(Math.min(index, CAROUSEL_IMAGES.length - 1));
+      const slides = el.querySelectorAll<HTMLElement>("[data-slide]");
+      const containerCenter = el.scrollLeft + el.clientWidth / 2;
+      let closest = 0;
+      let minDist = Infinity;
+      slides.forEach((slide, i) => {
+        const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+        const dist = Math.abs(containerCenter - slideCenter);
+        if (dist < minDist) {
+          minDist = dist;
+          closest = i;
+        }
+      });
+      setActiveIndex(closest);
     };
 
     el.addEventListener("scroll", handleScroll, { passive: true });
     return () => el.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Optional autoplay (disabled when prefers-reduced-motion)
   useEffect(() => {
     if (prefersReducedMotion) return;
     const id = setInterval(() => {
@@ -57,36 +76,36 @@ export const ImageCarousel: React.FC = () => {
       });
     }, AUTOPLAY_INTERVAL_MS);
     return () => clearInterval(id);
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, scrollToIndex]);
 
   return (
     <section
       id="carousel"
-      className="relative w-full bg-transparent py-6 sm:py-8"
+      className="relative w-full bg-paper py-section"
       aria-label="Research imagery carousel"
     >
-      {/* Wrapper so side blurs match image strip height and stay fixed (don't scroll with content) */}
-      <div className="relative mx-auto w-[60%]">
-        {/* Full-width scroll container; height from aspect ratio below */}
-        <div
-          ref={scrollRef}
-          className="flex w-full overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide"
-          style={{
-            scrollSnapType: "x mandatory",
-            WebkitOverflowScrolling: "touch"
-          }}
-        >
-          {CAROUSEL_IMAGES.map((item, index) => (
-            <div
-              key={index}
-              className="relative h-0 w-full flex-shrink-0 flex-grow-0"
-              style={{
-                paddingBottom: "42%",
-                scrollSnapAlign: "center",
-                scrollSnapStop: "always"
-              }}
-            >
-              <div className="absolute inset-0 flex items-center justify-center bg-texasBlue/20">
+      <div className="relative mx-auto max-w-content px-4 sm:px-6">
+        <div className="relative" aria-live="polite">
+          <div
+            ref={scrollRef}
+            className="flex gap-4 overflow-x-auto scroll-smooth scrollbar-hide px-[9%] sm:px-[8%] md:gap-5"
+            style={{
+              scrollSnapType: "x mandatory",
+              WebkitOverflowScrolling: "touch"
+            }}
+          >
+            {CAROUSEL_IMAGES.map((item, index) => (
+              <div
+                key={index}
+                data-slide={index}
+                className="relative flex-shrink-0 flex-grow-0 overflow-hidden rounded-xl3 border border-hairline bg-canvas shadow-card"
+                style={{
+                  width: `${SLIDE_WIDTH_PERCENT}%`,
+                  scrollSnapAlign: "center",
+                  scrollSnapStop: "always",
+                  aspectRatio: "16 / 9"
+                }}
+              >
                 <img
                   src={item.src}
                   alt={item.alt}
@@ -95,73 +114,71 @@ export const ImageCarousel: React.FC = () => {
                   decoding="async"
                 />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-paper to-transparent sm:w-20"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-paper to-transparent sm:w-20"
+            aria-hidden
+          />
         </div>
 
-        {/* Edge fades: same height as image strip, fixed to left/right of viewport (do not scroll) */}
-        <div
-          className="pointer-events-none absolute top-0 bottom-0 left-0 w-16 bg-gradient-to-r from-[#361259] to-transparent sm:w-24"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute top-0 bottom-0 right-0 w-16 bg-gradient-to-l from-[#361259] to-transparent sm:w-24"
-          aria-hidden
-        />
-      </div>
+        <div className="mt-8 flex items-center justify-center gap-5">
+          <button
+            type="button"
+            onClick={() => {
+              const prev =
+                activeIndex === 0 ? CAROUSEL_IMAGES.length - 1 : activeIndex - 1;
+              scrollToIndex(prev);
+            }}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-hairline bg-paper text-inkSoft shadow-card transition-colors hover:border-accent/30 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            aria-label="Previous slide"
+          >
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
 
-      {/* Dots + prev/next */}
-      <div className="mx-auto mt-6 flex max-w-6xl items-center justify-center gap-4 px-4">
-        <button
-          type="button"
-          onClick={() => {
-            const prev = activeIndex === 0 ? CAROUSEL_IMAGES.length - 1 : activeIndex - 1;
-            scrollToIndex(prev);
-          }}
-          className="rounded-full border border-offWhite/20 p-2 text-offWhite/70 transition-colors hover:border-texasRed/60 hover:bg-texasRed/20 hover:text-offWhite focus:outline-none focus:ring-2 focus:ring-texasRed/50"
-          aria-label="Previous slide"
-        >
-          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
+          <div className="flex items-center gap-2">
+            {CAROUSEL_IMAGES.map((_, index) => {
+              const isActive = activeIndex === index;
+              return (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => scrollToIndex(index)}
+                  className="flex h-5 w-7 items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  aria-label={`Go to slide ${index + 1}`}
+                  aria-current={isActive ? "true" : undefined}
+                >
+                <span
+                  className={`block h-2 rounded-full transition-all duration-300 ease-out ${
+                    isActive ? "w-6 bg-accent" : "w-2 bg-ink/15"
+                  }`}
+                />
+                </button>
+              );
+            })}
+          </div>
 
-        <div className="flex items-center gap-2">
-          {CAROUSEL_IMAGES.map((_, index) => (
-            <button
-              key={index}
-              type="button"
-              onClick={() => scrollToIndex(index)}
-              className="rounded-full p-1 focus:outline-none focus:ring-2 focus:ring-texasRed/50 focus:ring-offset-2 focus:ring-offset-transparent"
-              aria-label={`Go to slide ${index + 1}`}
-              aria-current={activeIndex === index ? "true" : undefined}
-            >
-              <motion.span
-                className="block h-2 w-2 rounded-full sm:h-2.5 sm:w-2.5"
-                style={{
-                  backgroundColor: activeIndex === index ? "#BF0A30" : "rgba(242,242,242,0.35)"
-                }}
-                transition={
-                  prefersReducedMotion ? { duration: 0 } : { type: "spring", stiffness: 400, damping: 25 }
-                }
-              />
-            </button>
-          ))}
+          <button
+            type="button"
+            onClick={() => {
+              const next = (activeIndex + 1) % CAROUSEL_IMAGES.length;
+              scrollToIndex(next);
+            }}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-hairline bg-paper text-inkSoft shadow-card transition-colors hover:border-accent/30 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            aria-label="Next slide"
+          >
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
         </div>
-
-        <button
-          type="button"
-          onClick={() => {
-            const next = (activeIndex + 1) % CAROUSEL_IMAGES.length;
-            scrollToIndex(next);
-          }}
-          className="rounded-full border border-offWhite/20 p-2 text-offWhite/70 transition-colors hover:border-texasRed/60 hover:bg-texasRed/20 hover:text-offWhite focus:outline-none focus:ring-2 focus:ring-texasRed/50"
-          aria-label="Next slide"
-        >
-          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </button>
       </div>
     </section>
   );

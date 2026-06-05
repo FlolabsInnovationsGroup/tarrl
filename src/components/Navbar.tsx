@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
+import { ThemeToggle } from "./ThemeToggle";
 
-const navLinks = [
+const headerLinks = [
   { href: "#who-we-are", label: "Who We Are" },
   { href: "#research-tracks", label: "Research Tracks" },
   { href: "#how-it-works", label: "How It Works" },
@@ -13,137 +14,95 @@ export const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  const pulseAnimation = prefersReducedMotion
-    ? {}
-    : {
-        animate: {
-          boxShadow: [
-            "0 0 0 0 rgba(191,10,48,0.55)",
-            "0 0 0 12px rgba(191,10,48,0)"
-          ]
-        },
-        transition: {
-          duration: 1.8,
-          repeat: Infinity,
-          ease: "easeOut"
-        }
-      };
+  const linkClass =
+    "rounded-lg px-3 py-2 text-inkSoft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
   return (
-    <header
-      className="fixed inset-x-0 top-0 z-40 border-b border-white/15 bg-[rgba(0,40,104,0.48)] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-[22px] backdrop-saturate-[1.2] transition-colors"
-    >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
-        <a href="#hero" className="flex items-center gap-2">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl font-extrabold tracking-[0.15em] text-offWhite [text-shadow:0_1px_4px_rgba(0,0,0,0.55),0_0_20px_rgba(0,25,66,0.35)]">
-              TARRL
-            </span>
-            {/* Texas flag appears exactly once here */}
-            <svg
-              width="24"
-              height="16"
-              viewBox="0 0 24 16"
-              aria-hidden="true"
-              className="shrink-0 drop-shadow-[0_0_1px_rgba(242,242,242,0.9)]"
-            >
-              <rect
-                x="0.5"
-                y="0.5"
-                width="23"
-                height="15"
-                fill="none"
-                stroke="#F2F2F2"
-                strokeWidth="1"
-              />
-              <rect x="0" y="0" width="8" height="16" fill="#002868" />
-              <rect x="8" y="0" width="16" height="8" fill="#F2F2F2" />
-              <rect x="8" y="8" width="16" height="8" fill="#BF0A30" />
-              <polygon
-                points="4,3 4.9,5.4 7.4,5.4 5.3,6.9 6.1,9.4 4,7.9 1.9,9.4 2.7,6.9 0.6,5.4 3.1,5.4"
-                fill="#F2F2F2"
-              />
-            </svg>
-          </div>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-hairline bg-paper/80 backdrop-blur-xl backdrop-saturate-150">
+      <nav className="mx-auto flex max-w-content items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-3.5">
+        <a
+          href="#hero"
+          className="flex shrink-0 items-center gap-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          <img
+            src="/logo-tarrl.svg"
+            alt=""
+            width={28}
+            height={28}
+            className="h-7 w-7"
+          />
+          <span className="font-display text-lg font-medium tracking-tight text-ink">
+            TARRL
+          </span>
         </a>
 
         <button
-          className="flex items-center gap-2 rounded-full border border-offWhite/15 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-offWhite/80 md:hidden"
+          type="button"
+          className="flex items-center gap-2 rounded-pill border border-hairline px-3.5 py-2 text-sm font-medium text-inkSoft md:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle navigation"
+          aria-expanded={open}
+          aria-label="Toggle menu"
         >
           <span>Menu</span>
-          <span className="relative h-3 w-4">
-            <span
-              className={`absolute inset-x-0 top-0 h-0.5 bg-offWhite transition ${
-                open ? "translate-y-1.5 rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`absolute inset-x-0 top-1.5 h-0.5 bg-offWhite transition ${
-                open ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`absolute inset-x-0 top-3 h-0.5 bg-offWhite transition ${
-                open ? "-translate-y-1.5 -rotate-45" : ""
-              }`}
-            />
-          </span>
         </button>
 
-        <div className="hidden items-center gap-8 md:flex">
-          <div className="flex items-center gap-6 text-xs font-semibold tracking-[0.18em] uppercase">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-offWhite/85 [text-shadow:0_1px_3px_rgba(0,0,0,0.5)] transition hover:text-offWhite"
-              >
+        <div className="hidden items-center gap-1 md:flex">
+          <div className="flex items-center gap-1 text-sm font-medium">
+            {headerLinks.map((link) => (
+              <a key={link.href} href={link.href} className={linkClass}>
                 {link.label}
               </a>
             ))}
           </div>
+          <ThemeToggle />
           <motion.a
             href="https://hephaestus.international/internships"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-texasRed px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-offWhite"
-            whileHover={{ scale: prefersReducedMotion ? 1 : 1.03 }}
-            whileTap={{ scale: prefersReducedMotion ? 1 : 0.97 }}
-            {...pulseAnimation}
+            className="ml-4 rounded-pill bg-accent px-5 py-2.5 text-sm font-medium text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            whileHover={{ scale: prefersReducedMotion ? 1 : 1.02 }}
+            whileTap={{ scale: prefersReducedMotion ? 1 : 0.98 }}
           >
             Apply Now
           </motion.a>
         </div>
       </nav>
 
-      {open && (
-        <div className="border-t border-purple/60 bg-texasBlue/98 px-4 pb-4 pt-2 md:hidden">
-          <div className="flex flex-col gap-3 text-xs font-semibold uppercase tracking-[0.18em]">
-            {navLinks.map((link) => (
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={prefersReducedMotion ? false : { opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={prefersReducedMotion ? undefined : { opacity: 0, height: 0 }}
+            className="border-t border-hairline bg-paper px-4 pb-6 pt-4 md:hidden"
+          >
+            <div className="flex flex-col gap-1 text-sm font-medium">
+              <div className="mb-2 flex justify-end px-3 py-1">
+                <ThemeToggle />
+              </div>
+              {headerLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg px-3 py-2.5 text-inkSoft"
+                >
+                  {link.label}
+                </a>
+              ))}
               <a
-                key={link.href}
-                href={link.href}
+                href="https://hephaestus.international/internships"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="text-offWhite/80"
+                className="mt-3 rounded-pill bg-accent px-5 py-3 text-center text-white"
               >
-                {link.label}
+                Apply Now
               </a>
-            ))}
-            <a
-              href="https://hephaestus.international/internships"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setOpen(false)}
-              className="mt-1 rounded-full bg-texasRed px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-offWhite"
-            >
-              Apply Now
-            </a>
-          </div>
-        </div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
-

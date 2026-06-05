@@ -6,31 +6,26 @@ const tracks = [
   {
     id: "humanoids",
     name: "Humanoids",
-    accent: "#BF0A30",
     description: "Humanoid robots that move, perceive, and act in the real world."
   },
   {
     id: "quadrupeds",
     name: "Quadrupeds",
-    accent: "#8C1C3A",
     description: "Legged robots for locomotion and terrain adaptation."
   },
   {
     id: "perception",
     name: "Perception & Sensing",
-    accent: "#BF0A30",
     description: "Vision, touch, and multimodal sensing for embodied agents."
   },
   {
     id: "tooling",
     name: "Tooling & Simulation",
-    accent: "#8C1C3A",
     description: "Simulation environments and tooling for rapid iteration."
   },
   {
     id: "space",
     name: "Space Robotics",
-    accent: "#BF0A30",
     description: "Robotics for terrestrial testbeds and off-world scenarios."
   }
 ];
@@ -47,18 +42,22 @@ const TrackItem: React.FC<{
       tabIndex={0}
       onMouseEnter={setActive}
       onFocus={setActive}
-      className={`relative cursor-default border-l border-offWhite/15 pl-5 py-5 transition-colors ${
-        active ? "border-texasRed" : ""
+      className={`relative cursor-default border-l-2 pl-6 py-5 transition-colors ${
+        active ? "border-accent" : "border-hairline"
       }`}
     >
-      <div className="absolute -left-[3px] top-6 h-2 w-2 rounded-full bg-offWhite" />
-      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-offWhite/60">
+      <div
+        className={`absolute -left-[5px] top-7 h-2.5 w-2.5 rounded-full transition-colors ${
+          active ? "bg-accent" : "bg-inkSoft/30"
+        }`}
+      />
+      <p className="text-xs font-medium text-inkSoft">
         Track {String(index + 1).padStart(2, "0")}
       </p>
-      <h3 className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-offWhite/85">
+      <h3 className="mt-1 font-display text-lg font-medium text-ink">
         {track.name}
       </h3>
-      <p className="mt-2 text-sm leading-relaxed text-offWhite/80">
+      <p className="mt-2 text-base leading-relaxed text-inkSoft">
         {track.description}
       </p>
     </div>
@@ -72,23 +71,24 @@ export const ResearchTracks: React.FC = () => {
   const activeTrack = tracks.find((t) => t.id === activeId) ?? tracks[0];
 
   return (
-    <section className="relative overflow-hidden bg-transparent py-20 sm:py-24">
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.4fr)]">
-        <div className="lg:sticky lg:top-28">
+    <section className="relative overflow-hidden bg-canvas py-section">
+      <div className="relative mx-auto grid max-w-content gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-16">
+        <div className="lg:sticky lg:top-28 lg:self-start">
           <p
             id="research-tracks"
-            className="text-xs font-semibold uppercase tracking-[0.25em] text-offWhite/70">
+            className="text-sm font-medium text-inkSoft"
+          >
             Research Tracks
           </p>
-          <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">
+          <h2 className="mt-3 font-display text-3xl font-medium leading-tight tracking-tight text-ink sm:text-4xl">
             Resources and support to accelerate your robotics research.
           </h2>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-offWhite/80 md:text-base">
+          <p className="mt-4 max-w-md text-base leading-relaxed text-inkSoft">
             Focus areas where we're pushing the boundaries of what's possible in embodied AI and robotics.
           </p>
 
           <motion.div
-            className="mt-10 w-full overflow-hidden rounded-3xl border border-offWhite/15 bg-texasBlue/60 p-6 lg:aspect-[4/3]"
+            className="mt-10 w-full overflow-hidden rounded-xl3 border border-hairline bg-paper p-8 shadow-card lg:aspect-[4/3]"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
             whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -98,12 +98,12 @@ export const ResearchTracks: React.FC = () => {
           >
             <div className="flex h-full flex-col justify-between">
               <div className="space-y-3">
-                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-offWhite/60">
+                <p className="text-xs font-medium text-inkSoft">
                   Research Tracks
                 </p>
                 <motion.p
                   key={activeTrack.id}
-                  className="text-3xl font-extrabold tracking-tight"
+                  className="font-display text-3xl font-medium tracking-tight text-ink"
                   initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
                   animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                   transition={
@@ -114,7 +114,7 @@ export const ResearchTracks: React.FC = () => {
                 >
                   {activeTrack.name}
                 </motion.p>
-                <p className="max-w-xs text-sm leading-relaxed text-offWhite/80">
+                <p className="max-w-xs text-base leading-relaxed text-inkSoft">
                   {activeTrack.description}
                 </p>
               </div>
@@ -126,8 +126,9 @@ export const ResearchTracks: React.FC = () => {
                 >
                   <defs>
                     <linearGradient id="track-line" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stopColor={activeTrack.accent} />
-                      <stop offset="100%" stopColor="#8C1C3A" />
+                      <stop offset="0%" stopColor="#2B6BED" />
+                      <stop offset="50%" stopColor="#6B4DE6" />
+                      <stop offset="100%" stopColor="#E0457B" />
                     </linearGradient>
                   </defs>
                   <rect
@@ -137,7 +138,7 @@ export const ResearchTracks: React.FC = () => {
                     height="104"
                     rx="16"
                     fill="none"
-                    stroke="rgba(242,242,242,0.18)"
+                    stroke="rgba(0,0,0,0.08)"
                   />
                   <motion.path
                     d="M20 96 C60 20 140 20 180 96"
@@ -156,7 +157,7 @@ export const ResearchTracks: React.FC = () => {
                     cx="20"
                     cy="96"
                     r="4"
-                    fill={activeTrack.accent}
+                    fill="#1A73E8"
                     initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.7 }}
                     animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
                     transition={
@@ -169,7 +170,7 @@ export const ResearchTracks: React.FC = () => {
                     cx="180"
                     cy="96"
                     r="4"
-                    fill={activeTrack.accent}
+                    fill="#E0457B"
                     initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.7 }}
                     animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
                     transition={
@@ -184,7 +185,7 @@ export const ResearchTracks: React.FC = () => {
           </motion.div>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-1">
           {tracks.map((track, index) => (
             <TrackItem
               key={track.id}
@@ -199,4 +200,3 @@ export const ResearchTracks: React.FC = () => {
     </section>
   );
 };
-
