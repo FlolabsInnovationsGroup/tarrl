@@ -24,6 +24,11 @@ const projectLinks = [
   { href: "https://www.flomadtravel.com/", label: "Flo Travel", external: true },
   { href: "https://www.flobrain.ai/", label: "FloBrain", external: true },
   {
+    href: "https://www.flolabsinnovations.com/",
+    label: "FloLabs Innovations Group",
+    external: true,
+  },
+  {
     href: "https://www.flolabs.international/",
     label: "FloLabs International",
     external: true,
@@ -208,8 +213,8 @@ export const Footer: React.FC = () => {
       ? "text-[13px] font-bold uppercase tracking-[0.2em] text-white"
       : "text-[13px] font-bold uppercase tracking-[0.2em] text-ink",
     link: isDark
-      ? "text-[15px] text-white underline underline-offset-2 transition-colors hover:text-[#BF0A30] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-      : "text-[15px] text-ink underline underline-offset-2 transition-colors hover:text-[#BF0A30] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink",
+      ? "text-[15px] text-white transition-colors hover:text-[#BF0A30] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      : "text-[15px] text-ink transition-colors hover:text-[#BF0A30] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink",
     muted: isDark ? "text-[#8A8A8A]" : "text-inkSoft",
     wordmark: isDark ? "text-white" : "text-ink",
     divider: isDark ? "bg-white/25" : "bg-ink/20",
