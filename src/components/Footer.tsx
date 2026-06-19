@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId, useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 
 const navigationLinks = [
@@ -6,6 +6,52 @@ const navigationLinks = [
   { href: "#research-tracks", label: "Research tracks" },
   { href: "#how-it-works", label: "How it works" },
   { href: "#who-this-is-for", label: "Who is this for" },
+  { href: "#apply", label: "Apply now" },
+];
+
+const projectLinks = [
+  {
+    href: "https://www.athleticperformanceintelligence.com/",
+    label: "Athletic Performance",
+    external: true,
+  },
+  { href: "https://www.caipo.ai/", label: "CAIPO", external: true },
+  {
+    href: "https://www.youtube.com/@flolabsinnovation",
+    label: "Connecting the Dots",
+    external: true,
+  },
+  { href: "https://www.flomadtravel.com/", label: "Flo Travel", external: true },
+  { href: "https://www.flobrain.ai/", label: "FloBrain", external: true },
+  {
+    href: "https://www.flolabs.international/",
+    label: "FloLabs International",
+    external: true,
+  },
+  { href: "https://www.flostudios.ai/", label: "FloStudios", external: true },
+  {
+    href: "https://hephaestus.international/",
+    label: "Hepheastus International",
+    external: true,
+  },
+  {
+    href: "https://www.bootcampuniversity.org/",
+    label: "Innovation Bootcamp University",
+    external: true,
+  },
+  { href: "https://www.moodchanger.ai/", label: "MoodChanger", external: true },
+  {
+    href: "https://www.legalethicsventuresinstitute.com/",
+    label: "Legal & Ethics Ventures Institute",
+    external: true,
+  },
+  { href: "https://www.robocollective.ai/", label: "RoboCollective", external: true },
+  {
+    href: "https://www.spaceventuresinstitute.com/",
+    label: "Space Ventures Institute",
+    external: true,
+  },
+  { href: "https://tarrl.org/", label: "TARRL", external: true },
 ];
 
 const companyLinks = [
@@ -14,46 +60,12 @@ const companyLinks = [
     label: "Careers",
     external: true,
   },
+  { href: "mailto:contact@tarrl.org", label: "Contact Us" },
   {
     href: "https://flolabsrd.notion.site/merch-background",
     label: "Merch",
     external: true,
   },
-];
-
-const checkMoreColumns = [
-  [
-    { href: "https://www.caipo.ai/", label: "CAIPO", external: true },
-    { href: "https://moodchanger.ai/", label: "MoodChanger", external: true },
-    { href: "https://www.robocollective.ai/", label: "RoboCollective", external: true },
-    {
-      href: "https://www.athleticperformanceintelligence.com/#cta",
-      label: "Athletic Performance",
-      external: true,
-    },
-  ],
-  [
-    { href: "https://www.flobrain.ai/", label: "FloBrain", external: true },
-    { href: "https://www.flomadtravel.com/", label: "FloTravel", external: true },
-    {
-      href: "https://www.spaceventuresinstitute.com/",
-      label: "Space Ventures Institute",
-      external: true,
-    },
-    {
-      href: "https://www.youtube.com/playlist?list=PLwvFs7_Vcdwvn4eiECTY8tAB-M6cB5_B9",
-      label: "Connecting the dots",
-      external: true,
-    },
-  ],
-  [
-    {
-      href: "https://hephaestus.international/",
-      label: "Hepheastus International",
-      external: true,
-    },
-    { href: "https://www.flostudios.ai/", label: "FloStudios", external: true },
-  ],
 ];
 
 type FooterLinkItem = {
@@ -104,11 +116,25 @@ const LinkedInIcon: React.FC = () => (
   </svg>
 );
 
+const ChevronIcon: React.FC<{ open: boolean }> = ({ open }) => (
+  <svg
+    width="12"
+    height="12"
+    viewBox="0 0 12 12"
+    fill="currentColor"
+    aria-hidden="true"
+    className={`shrink-0 transition-transform duration-200 ${open ? "rotate-90" : ""}`}
+  >
+    <path d="M4.5 2 9 6 4.5 10V2z" />
+  </svg>
+);
+
 const FooterLinkList: React.FC<{
   links: FooterLinkItem[];
   linkClass: string;
-}> = ({ links, linkClass }) => (
-  <ul className="mt-4 flex flex-col gap-3.5">
+  className?: string;
+}> = ({ links, linkClass, className = "mt-4 flex flex-col gap-3.5" }) => (
+  <ul className={className}>
     {links.map((link) => (
       <li key={link.label}>
         <a
@@ -124,6 +150,53 @@ const FooterLinkList: React.FC<{
     ))}
   </ul>
 );
+
+const FooterCollapsibleSection: React.FC<{
+  title: string;
+  links: FooterLinkItem[];
+  linkClass: string;
+  headingClass: string;
+  sectionBorderClass: string;
+  toggleFocusClass: string;
+}> = ({
+  title,
+  links,
+  linkClass,
+  headingClass,
+  sectionBorderClass,
+  toggleFocusClass,
+}) => {
+  const [open, setOpen] = useState(false);
+  const panelId = useId();
+
+  return (
+    <div className={`lg:border-b-0 ${sectionBorderClass}`}>
+      <button
+        type="button"
+        className={`flex w-full items-center justify-between gap-4 py-4 text-left lg:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${toggleFocusClass}`}
+        aria-expanded={open}
+        aria-controls={panelId}
+        onClick={() => setOpen((value) => !value)}
+      >
+        <span className={headingClass}>{title}</span>
+        <ChevronIcon open={open} />
+      </button>
+
+      <p className={`hidden lg:block ${headingClass}`}>{title}</p>
+
+      <div
+        id={panelId}
+        className={open ? "block pb-4 lg:pb-0" : "hidden lg:block"}
+      >
+        <FooterLinkList
+          links={links}
+          linkClass={linkClass}
+          className="flex flex-col gap-3.5 pb-1 lg:mt-4 lg:pb-0"
+        />
+      </div>
+    </div>
+  );
+};
 
 export const Footer: React.FC = () => {
   const { theme } = useTheme();
@@ -151,16 +224,80 @@ export const Footer: React.FC = () => {
       ? "text-white hover:text-[#BF0A30] focus-visible:outline-white"
       : "text-ink hover:text-[#BF0A30] focus-visible:outline-ink",
     youtubePlayFill: isDark ? "#0B0B0B" : "#ffffff",
+    toggleFocus: isDark
+      ? "focus-visible:outline-white"
+      : "focus-visible:outline-ink",
   };
 
   const handleNewsletterSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
 
+  const renderNewsletterBlock = (inputId: string) => (
+    <div>
+      <p className={styles.heading}>Newsletter</p>
+      <p className={`mt-3 text-[13px] ${styles.muted}`}>
+        Receive the newest FloLabs updates at:
+      </p>
+      <form
+        onSubmit={handleNewsletterSubmit}
+        className="mt-4 w-full max-w-sm"
+        noValidate
+      >
+        <div className="relative flex w-full">
+          <label htmlFor={inputId} className="sr-only">
+            Email address for newsletter
+          </label>
+          <input
+            id={inputId}
+            name="email"
+            type="email"
+            autoComplete="email"
+            placeholder="Enter your email..."
+            className={`w-full border py-3 pl-4 pr-12 text-[15px] focus:outline-none focus-visible:ring-2 ${styles.input}`}
+          />
+          <button
+            type="submit"
+            className={`absolute right-0 top-0 flex aspect-square h-full w-11 items-center justify-center transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${styles.submit}`}
+            aria-label="Subscribe to newsletter"
+          >
+            <SendIcon />
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+
+  const socialBlock = (
+    <div>
+      <p className={styles.heading}>Social Media</p>
+      <div className="mt-4 flex items-center gap-4">
+        <a
+          href="https://www.youtube.com/@flolabsinnovation"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`inline-flex transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${styles.social}`}
+          aria-label="YouTube"
+        >
+          <YouTubeIcon playFill={styles.youtubePlayFill} />
+        </a>
+        <a
+          href="https://www.linkedin.com/company/flolabs-innovation"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`inline-flex transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${styles.social}`}
+          aria-label="LinkedIn"
+        >
+          <LinkedInIcon />
+        </a>
+      </div>
+    </div>
+  );
+
   return (
     <footer className={`py-16 transition-colors lg:py-20 ${styles.footer}`}>
       <div className="mx-auto max-w-content px-4 sm:px-6">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,380px)_1fr] lg:gap-16 xl:gap-24">
+        <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[minmax(0,380px)_repeat(3,minmax(0,1fr))] lg:gap-8 xl:gap-12">
           <div className="flex flex-col gap-10">
             <div>
               <div className="flex flex-wrap items-center gap-3">
@@ -181,103 +318,52 @@ export const Footer: React.FC = () => {
                   aria-hidden="true"
                 />
                 <span className={`text-[13px] ${styles.muted}`}>
-                  a FloLabs project
+                  by FloLabs Innovations Group
                 </span>
               </div>
-            </div>
-
-            <div>
-              <p className={styles.heading}>Newsletter</p>
-              <p className={`mt-3 text-[13px] ${styles.muted}`}>
-                Receieve the newest FloLabs updates at:
+              <p className={`mt-5 max-w-sm text-[15px] leading-relaxed ${styles.muted}`}>
+                Texas Advanced Robotics Research Lab is an open, venture-driven
+                Embodied AI institute where advanced AI, robotics, and human
+                imagination come together to build agents and robots for the real
+                world.
               </p>
-              <form
-                onSubmit={handleNewsletterSubmit}
-                className="mt-4 w-full max-w-sm"
-                noValidate
-              >
-                <div className="relative flex w-full">
-                  <label htmlFor="footer-email" className="sr-only">
-                    Email address for newsletter
-                  </label>
-                  <input
-                    id="footer-email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    placeholder="Enter your email..."
-                    className={`w-full border py-3 pl-4 pr-12 text-[15px] focus:outline-none focus-visible:ring-2 ${styles.input}`}
-                  />
-                  <button
-                    type="submit"
-                    className={`absolute right-0 top-0 flex aspect-square h-full w-11 items-center justify-center transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${styles.submit}`}
-                    aria-label="Subscribe to newsletter"
-                  >
-                    <SendIcon />
-                  </button>
-                </div>
-              </form>
             </div>
 
-            <div>
-              <p className={styles.heading}>Social Media</p>
-              <div className="mt-4 flex items-center gap-4">
-                <a
-                  href="https://www.youtube.com/@FloLabsInnovation"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`inline-flex transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${styles.social}`}
-                  aria-label="YouTube"
-                >
-                  <YouTubeIcon playFill={styles.youtubePlayFill} />
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/flolabs-innovation"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`inline-flex transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${styles.social}`}
-                  aria-label="LinkedIn"
-                >
-                  <LinkedInIcon />
-                </a>
-              </div>
-            </div>
+            {renderNewsletterBlock("footer-email")}
+            {socialBlock}
           </div>
 
-          <div className="flex flex-col gap-10 lg:gap-12">
-            <div className="grid gap-10 sm:grid-cols-2 sm:gap-8">
-              <div>
-                <p className={styles.heading}>Navigation</p>
-                <FooterLinkList links={navigationLinks} linkClass={styles.link} />
-              </div>
-              <div>
-                <p className={styles.heading}>Company</p>
-                <FooterLinkList links={companyLinks} linkClass={styles.link} />
-              </div>
-            </div>
+          <div>
+            <FooterCollapsibleSection
+              title="Navigation"
+              links={navigationLinks}
+              linkClass={styles.link}
+              headingClass={styles.heading}
+              sectionBorderClass={`border-b lg:border-b-0 ${styles.borderDivider}`}
+              toggleFocusClass={styles.toggleFocus}
+            />
+          </div>
 
-            <div>
-              <p className={styles.heading}>Check More</p>
-              <div className="mt-4 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-                {checkMoreColumns.map((column, columnIndex) => (
-                  <ul key={columnIndex} className="flex flex-col gap-3.5">
-                    {column.map((link) => (
-                      <li key={link.label}>
-                        <a
-                          href={link.href}
-                          {...(link.external
-                            ? { target: "_blank", rel: "noopener noreferrer" }
-                            : {})}
-                          className={styles.link}
-                        >
-                          {link.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                ))}
-              </div>
-            </div>
+          <div>
+            <FooterCollapsibleSection
+              title="Projects"
+              links={projectLinks}
+              linkClass={styles.link}
+              headingClass={styles.heading}
+              sectionBorderClass={`border-b lg:border-b-0 ${styles.borderDivider}`}
+              toggleFocusClass={styles.toggleFocus}
+            />
+          </div>
+
+          <div>
+            <FooterCollapsibleSection
+              title="Company"
+              links={companyLinks}
+              linkClass={styles.link}
+              headingClass={styles.heading}
+              sectionBorderClass={`border-b lg:border-b-0 ${styles.borderDivider}`}
+              toggleFocusClass={styles.toggleFocus}
+            />
           </div>
         </div>
 
@@ -285,7 +371,7 @@ export const Footer: React.FC = () => {
           <p
             className={`text-center text-[13px] tracking-[0.15em] ${styles.muted}`}
           >
-            Live long and prosper.
+            Live Long and Prosper
           </p>
         </div>
       </div>
