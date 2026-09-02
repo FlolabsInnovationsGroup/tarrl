@@ -1,6 +1,6 @@
 # TARRL
 
-**Texas Advanced Robotics Research Lab** — an open, venture-driven Embodied AI institute where curiosity meets courage and AI, robotics, and design collide.
+**Texas Advanced Robotics Research Lab** —  an open, venture-driven Embodied AI institute where curiosity meets courage and AI, robotics, and design collide.
 
 This repository is the official marketing/landing site for TARRL. It introduces the lab, research tracks, how participation works, and who it’s for.
 
