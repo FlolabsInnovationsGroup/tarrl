@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# Background media — not useful for search indexing
+Disallow: /*.mp4$
+Disallow: /*.webm$
+
 Sitemap: https://tarrl.org/sitemap.xml

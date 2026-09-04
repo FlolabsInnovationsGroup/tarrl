@@ -96,7 +96,7 @@ npm run preview
 
 ## Accessibility
 
-The site respects `prefers-reduced-motion` for animations and uses smooth scrolling only when motion is not reduced.
+The site respects `prefers-reduced-motion` for animations and uses smooth scrolling only when motion is not reduced .
 
 ## License
 
