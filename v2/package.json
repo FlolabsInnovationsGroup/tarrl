@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "node init && vite",
     "favicons": "node scripts/generate-favicons.mjs",
     "prebuild": "npm run favicons",
-    "build": "vite build",
+    "build": "node init && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
