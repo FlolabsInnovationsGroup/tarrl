@@ -1,0 +1,15 @@
+# Group all npm security updates into one PR per repo instead of one PR per package.
+# Version updates are turned off (limit 0); security updates still open when an alert appears.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directories:
+      - "**/*"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 0
+    groups:
+      npm-security-updates:
+        applies-to: security-updates
+        patterns:
+          - "*"
