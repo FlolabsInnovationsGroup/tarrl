@@ -53,6 +53,14 @@
     .footer-line { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
     .sources { margin-top:13px; display:flex; flex-wrap:wrap; gap:10px 22px; }
     .sources a { color:#c8d8e8; text-underline-offset:3px; }
+
+    .origin-story { border-block:1px solid var(--line); padding:54px 0 65px; margin-bottom:72px; background:rgba(13,26,41,.7); }
+    .origin-layout { display:grid; grid-template-columns:minmax(190px,.7fr) minmax(0,1.6fr); gap:clamp(28px,5vw,90px); }
+    .origin-story h2 { font-size:clamp(2rem,3vw,3rem); max-width:420px; margin-top:16px; }
+    .origin-story p { color:#d6e0eb; margin-bottom:17px; max-width:720px; }
+    .origin-story .moment { border-left:3px solid var(--accent); padding:13px 20px; margin:25px 0; color:var(--ink); background:rgba(30,46,61,.45); }
+    .moment span { display:block; color:var(--accent); font-size:.75rem; letter-spacing:.1em; font-weight:750; text-transform:uppercase; margin-bottom:7px; }
+    @media (max-width:800px) { .origin-layout { grid-template-columns:1fr; } .origin-story { padding:45px 0; margin-bottom:47px; } }
     @media (max-width:800px) { .intro { padding:70px 0 45px; } .memorial { display:block; padding-top:43px; } .memorial figure { max-width:360px; margin-bottom:42px; } .legacy-cards { grid-template-columns:1fr; } .nav-links { gap:18px; } }
     @media (max-width:520px) { .container { width:min(100% - 34px,1140px); } .nav { min-height:76px; } .brand { font-size:1rem; } .nav-links { font-size:.8rem; } .intro { padding-top:54px; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
@@ -88,6 +96,23 @@
         <p>We honor his memory by continuing to invest in capable people, rigorous inquiry, and opportunities for the next generation to make a meaningful contribution.</p>
       </div>
     </article>
+    <section class="origin-story" aria-labelledby="tarrl-origin">
+      <div class="container origin-layout">
+        <div>
+          <div class="eyebrow">The Origins of TARRL</div>
+          <h2 id="tarrl-origin">An idea that became a mission.</h2>
+        </div>
+        <div>
+          <p>The inspiration for TARRL came from Admiral Inman. In conversations about preparing young people for a world transformed by robotics and artificial intelligence, he encouraged a different approach: give people an opportunity to explore, experiment, and discover through hands-on research.</p>
+          <p>During a July 10, 2025 discussion with John Hazlewood and Dean David (Tianwei) Ma of Texas A&amp;M University–Corpus Christi, Admiral Inman argued for a genuine robotics laboratory rather than treating the initiative as a conventional classroom. Drawing on NASA's experimental work with robotic exploration, he emphasized curiosity, practical testing, and the value of giving students room to develop ideas of their own.</p>
+          <div class="moment">
+            <span>July 10, 2025 · A pivotal conversation</span>
+            His guidance helped clarify a foundational principle of TARRL: begin with a focused, hands-on laboratory, demonstrate working results, and build outward from what has been proven.
+          </div>
+          <p>That discussion strengthened a vision connecting advanced robotics research, applied AI, university engagement, entrepreneurship, and experiential learning. Inman's leadership as Chairman of TARRL helped turn that inspiration into the lab's enduring purpose.</p>
+        </div>
+      </div>
+    </section>
     <section class="container legacy-cards" aria-label="Admiral Inman's enduring legacy">
       <div class="legacy-card"><div class="label">Public service</div><h3>Leadership with responsibility</h3><p>Decades of national service across naval intelligence, the NSA, and the Central Intelligence Agency.</p></div>
       <div class="legacy-card"><div class="label">TARRL’s origins</div><h3>His idea, a lasting mission</h3><p>Admiral Inman originated the idea for TARRL and served as its Chairman, giving direction and purpose to the lab’s vision.</p></div>
