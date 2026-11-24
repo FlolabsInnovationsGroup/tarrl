@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TARRL remembers Admiral Bobby Ray Inman (1931–2026), originator of the TARRL concept and Chairman of TARRL and FloLabs Innovations Group, former NSA Director, Deputy Director of Central Intelligence, mentor, and technology leader.">
+  <meta name="theme-color" content="#0b1320">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Admiral Bobby R. Inman | Leadership & Legacy | TARRL">
+  <meta property="og:description" content="Honoring a lifetime of national service, technological leadership, and mentorship.">
+  <title>Team & Leadership | Admiral Bobby R. Inman | TARRL</title>
+  <style>
+    :root { color-scheme: dark; --bg:#0b1320; --panel:#142134; --line:#304055; --ink:#f5f8fc; --muted:#b3c1d1; --accent:#ccad79; --teal:#8bd9d6; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:radial-gradient(circle at 85% 0%, #162c41 0%, transparent 42%),var(--bg); color:var(--ink); font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.7; }
+    a { color:inherit; } a:focus-visible,button:focus-visible { outline:3px solid var(--teal); outline-offset:4px; }
+    .container { width:min(1140px,calc(100% - 48px)); margin-inline:auto; }
+    .skip { position:absolute; left:16px; top:-100px; background:white; color:#071321; padding:10px 16px; z-index:100; } .skip:focus { top:10px; }
+    .site-header { border-bottom:1px solid var(--line); background:rgba(9,18,31,.86); }
+    .nav { display:flex; justify-content:space-between; align-items:center; gap:24px; min-height:88px; }
+    .brand { text-decoration:none; font-weight:800; letter-spacing:.13em; font-size:1.15rem; } .brand small { display:block; color:var(--muted); letter-spacing:.09em; font-size:.58rem; font-weight:600; }
+    .nav-links { display:flex; align-items:center; gap:30px; font-size:.88rem; }
+    .nav-links a { text-decoration:none; color:var(--muted); } .nav-links a[aria-current="page"] { color:var(--ink); border-bottom:2px solid var(--accent); padding-block:9px; }
+    .nav-links a:hover { color:var(--ink); }
+    .intro { padding:90px 0 66px; }
+    .eyebrow { color:var(--accent); font-size:.76rem; font-weight:750; letter-spacing:.19em; text-transform:uppercase; }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { font-family:Georgia,"Times New Roman",serif; font-size:clamp(2.45rem,5vw,4.65rem); line-height:1.14; letter-spacing:-.035em; font-weight:500; max-width:880px; margin:20px 0 20px; }
+    .intro p { color:var(--muted); max-width:700px; font-size:1.07rem; }
+    .divider { border:0; height:1px; background:linear-gradient(90deg,var(--accent),var(--line) 36%,transparent); margin:0; }
+    .memorial { padding:66px 0 86px; display:grid; grid-template-columns:minmax(250px,390px) 1fr; gap:clamp(32px,5vw,78px); align-items:start; }
+    figure { margin:0; }
+    .portrait { position:relative; border-radius:6px; overflow:hidden; border:1px solid #405064; background:#1c2635; }
+    .portrait img { display:block; width:100%; aspect-ratio:4/5; object-fit:cover; object-position:center top; filter:saturate(.82); }
+    .portrait:after { content:""; position:absolute; inset:0; pointer-events:none; box-shadow:inset 0 -70px 65px rgba(8,17,28,.20); }
+    figcaption { color:var(--muted); font-size:.75rem; line-height:1.55; margin-top:10px; }
+    figcaption a { color:var(--muted); }
+    .years { color:var(--accent); font-size:.82rem; font-weight:750; letter-spacing:.15em; }
+    h2 { font-family:Georgia,"Times New Roman",serif; font-size:clamp(2.35rem,4vw,3.9rem); line-height:1.13; font-weight:500; margin:10px 0 14px; letter-spacing:-.03em; }
+    .role { font-size:1.06rem; color:var(--teal); font-weight:650; margin:0 0 23px; }
+    .profile p { color:#d6e0eb; max-width:680px; font-size:1rem; }
+    .profile p.lede { font-size:1.12rem; color:var(--ink); }
+    .legacy-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; margin:3px auto 72px; }
+    .legacy-card { border:1px solid var(--line); background:rgba(24,39,57,.62); padding:25px; border-radius:7px; }
+    .legacy-card .label { color:var(--accent); font-size:.71rem; text-transform:uppercase; font-weight:750; letter-spacing:.13em; }
+    .legacy-card h3 { font-size:1.14rem; margin:10px 0; }
+    .legacy-card p { color:var(--muted); font-size:.89rem; margin-bottom:0; }
+    .closing { border-top:1px solid var(--line); padding:50px 0 80px; }
+    .closing blockquote { margin:0; font-family:Georgia,"Times New Roman",serif; font-size:clamp(1.4rem,2.3vw,2rem); line-height:1.48; max-width:870px; }
+    .closing p { color:var(--muted); margin-top:18px; }
+    footer { background:#090f1a; border-top:1px solid var(--line); padding:28px 0 42px; color:var(--muted); font-size:.82rem; }
+    .footer-line { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    .sources { margin-top:13px; display:flex; flex-wrap:wrap; gap:10px 22px; }
+    .sources a { color:#c8d8e8; text-underline-offset:3px; }
+
+    .origin-story { border-block:1px solid var(--line); padding:54px 0 65px; margin-bottom:72px; background:rgba(13,26,41,.7); }
+    .origin-layout { display:grid; grid-template-columns:minmax(190px,.7fr) minmax(0,1.6fr); gap:clamp(28px,5vw,90px); }
+    .origin-story h2 { font-size:clamp(2rem,3vw,3rem); max-width:420px; margin-top:16px; }
+    .origin-story p { color:#d6e0eb; margin-bottom:17px; max-width:720px; }
+    .origin-story .moment { border-left:3px solid var(--accent); padding:13px 20px; margin:25px 0; color:var(--ink); background:rgba(30,46,61,.45); }
+    .moment span { display:block; color:var(--accent); font-size:.75rem; letter-spacing:.1em; font-weight:750; text-transform:uppercase; margin-bottom:7px; }
+    @media (max-width:800px) { .origin-layout { grid-template-columns:1fr; } .origin-story { padding:45px 0; margin-bottom:47px; } }
+    @media (max-width:800px) { .intro { padding:70px 0 45px; } .memorial { display:block; padding-top:43px; } .memorial figure { max-width:360px; margin-bottom:42px; } .legacy-cards { grid-template-columns:1fr; } .nav-links { gap:18px; } }
+    @media (max-width:520px) { .container { width:min(100% - 34px,1140px); } .nav { min-height:76px; } .brand { font-size:1rem; } .nav-links { font-size:.8rem; } .intro { padding-top:54px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="nav container" aria-label="Main navigation">
+    <a class="brand" href="/" aria-label="TARRL home">TARRL <small>TEXAS ADVANCED ROBOTICS RESEARCH LAB</small></a>
+    <div class="nav-links"><a href="/">Home</a><a href="/team.html" aria-current="page">Team</a></div>
+  </nav></header>
+  <main id="main">
+    <div class="container intro">
+      <div class="eyebrow">Our Team / Leadership &amp; Legacy</div>
+      <h1>Honoring the visionary who inspired TARRL.</h1>
+      <p>Our work is shaped not only by those building the future, but also by the leaders whose judgment, mentorship, and example make that work possible.</p>
+    </div>
+    <div class="container"><hr class="divider"></div>
+    <article class="container memorial" aria-labelledby="inman-name">
+      <figure>
+        <div class="portrait"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Admiral_Bobby_Ray_Inman%2C_official_CIA_photo%2C_1983.JPEG" alt="Official 1983 portrait of Admiral Bobby Ray Inman in U.S. Navy uniform" width="2077" height="2650"></div>
+        <figcaption>Official U.S. government portrait, 1983. <a href="https://commons.wikimedia.org/wiki/File:Admiral_Bobby_Ray_Inman,_official_CIA_photo,_1983.JPEG" rel="noopener noreferrer" target="_blank">Public-domain image and attribution information</a>.</figcaption>
+      </figure>
+      <div class="profile">
+        <div class="eyebrow">In Memoriam</div>
+        <div class="years">1931 – 2026</div>
+        <h2 id="inman-name">Admiral Bobby Ray Inman</h2>
+        <p class="role">Originator of the TARRL Vision · Chairman, TARRL and FloLabs Innovations Group · Admiral, U.S. Navy (Retired)</p>
+        <p class="lede">Admiral Bobby Ray Inman dedicated his life to public service, technological progress, education, and the development of future leaders. TARRL began with his idea: a vision to connect advanced technology and applied research with ambitious people solving meaningful problems.</p>
+        <p>His distinguished career included service as Director of Naval Intelligence, Director of the National Security Agency, and Deputy Director of Central Intelligence. Rising to the rank of four-star admiral, he helped shape an era of American national security leadership.</p>
+        <p>After his military service, he became an important voice in Austin's technology and entrepreneurship community. At The University of Texas at Austin, he shared his experience and encouragement with generations of students, researchers, and public servants.</p>
+        <p>The idea for the Texas Advanced Robotics Research Lab was Admiral Inman’s. As Chairman of TARRL and FloLabs Innovations Group, he helped shape a vision for bringing robotics, artificial intelligence, research, education, and entrepreneurship together to address real-world challenges. We are grateful for his original inspiration, leadership, time, and perspective.</p>
+        <p>We honor his memory by continuing to invest in capable people, rigorous inquiry, and opportunities for the next generation to make a meaningful contribution.</p>
+      </div>
+    </article>
+    <section class="origin-story" aria-labelledby="tarrl-origin">
+      <div class="container origin-layout">
+        <div>
+          <div class="eyebrow">The Origins of TARRL</div>
+          <h2 id="tarrl-origin">An idea that became a mission.</h2>
+        </div>
+        <div>
+          <p>The inspiration for TARRL came from Admiral Inman. In conversations about preparing young people for a world transformed by robotics and artificial intelligence, he encouraged a different approach: give people an opportunity to explore, experiment, and discover through hands-on research.</p>
+          <p>During a July 10, 2025 discussion with John Hazlewood and Dean David (Tianwei) Ma of Texas A&amp;M University–Corpus Christi, Admiral Inman argued for a genuine robotics laboratory rather than treating the initiative as a conventional classroom. Drawing on NASA's experimental work with robotic exploration, he emphasized curiosity, practical testing, and the value of giving students room to develop ideas of their own.</p>
+          <div class="moment">
+            <span>July 10, 2025 · A pivotal conversation</span>
+            His guidance helped clarify a foundational principle of TARRL: begin with a focused, hands-on laboratory, demonstrate working results, and build outward from what has been proven.
+          </div>
+          <p>That discussion strengthened a vision connecting advanced robotics research, applied AI, university engagement, entrepreneurship, and experiential learning. Inman's leadership as Chairman of TARRL helped turn that inspiration into the lab's enduring purpose.</p>
+        </div>
+      </div>
+    </section>
+    <section class="container legacy-cards" aria-label="Admiral Inman's enduring legacy">
+      <div class="legacy-card"><div class="label">Public service</div><h3>Leadership with responsibility</h3><p>Decades of national service across naval intelligence, the NSA, and the Central Intelligence Agency.</p></div>
+      <div class="legacy-card"><div class="label">TARRL’s origins</div><h3>His idea, a lasting mission</h3><p>Admiral Inman originated the idea for TARRL and served as its Chairman, giving direction and purpose to the lab’s vision.</p></div>
+      <div class="legacy-card"><div class="label">Education</div><h3>Knowledge shared forward</h3><p>A lasting commitment to mentorship, scholarship, and developing emerging leaders.</p></div>
+    </section>
+    <section class="closing"><div class="container">
+      <div class="eyebrow">His Legacy</div>
+      <blockquote>Progress is measured not only by what we create, but by the people we empower to carry it forward.</blockquote>
+      <p>TARRL remembers Admiral Inman with gratitude and respect. This is our tribute, not a quotation attributed to him.</p>
+    </div></section>
+  </main>
+  <footer><div class="container">
+    <div class="footer-line"><span>TARRL by FloLabs Innovations Group</span><span>Remembering Admiral Bobby R. Inman (1931–2026)</span></div>
+    <div class="sources" aria-label="Further reading">
+      <a href="https://lbj.utexas.edu/in-memoriam-admiral-bobby-inman" target="_blank" rel="noopener noreferrer">University of Texas tribute</a>
+      <a href="https://www.strausscenter.org/news/in-memoriam-admiral-bobby-r-inman/" target="_blank" rel="noopener noreferrer">Strauss Center remembrance</a>
+      <a href="https://www.afio.com/obituaries/2026/11/20/bobby-inman-former-nsa-director%2C-cia-deputy-director%2C-afio-honorary-board-member/" target="_blank" rel="noopener noreferrer">Association of Former Intelligence Officers</a>
+    </div>
+  </div></footer>
+</body>
+</html>
